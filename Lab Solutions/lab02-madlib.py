@@ -7,7 +7,7 @@ valStat = "O"
 rosStat = "O"
 vioStat = "O"
 nouStat = "O"
-namStat = "0"
+namStat = "O"
 from os import system, name
 def clear():
     if name == 'nt':
