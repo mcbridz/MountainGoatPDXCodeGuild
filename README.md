@@ -14,6 +14,8 @@
 
 [lab 4](Lab%20Solutions/lab4-magic8ball.py)
 
+[lab 5](Lab%20Solutions/lab5-random_emoticon_generator.py)
+
 [Fullstack Course](https://github.com/PdxCodeGuild/class_mountain_goat)
 
 solutions for the python fullstack course
