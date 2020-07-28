@@ -12,6 +12,8 @@
 
 [lab 3](Lab%20Solutions/lab3-grading.py)
 
+[lab 4](Lab%20Solutions/lab4-magic8ball.py)
+
 [Fullstack Course](https://github.com/PdxCodeGuild/class_mountain_goat)
 
 solutions for the python fullstack course
