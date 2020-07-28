@@ -9,7 +9,8 @@ right_head = ['|', '}', ')', ';', '༽', ':']
 import random
 
 def generate_face():
-    return random.choice(left_head) + random.choice(eyes) + random.choice(noses) + random.choice(eyes) + random.choice(right_head)
+    head_alignment = random.randrange(0, 5)
+    return left_head[head_alignment] + random.choice(eyes) + random.choice(noses) + random.choice(eyes) + right_head[head_alignment]
 
 def main():
     num = int(input(("Please enter the number of faces to be generated.")))
