@@ -16,6 +16,24 @@
 
 [lab 5](Lab%20Solutions/lab5-random_emoticon_generator.py)
 
+### 101-102 code (pre-bootcamp)
+
+[anagramChecker](101-102/anagramChecker.py)
+
+[anagramTester](101-102/anagramTester.py)
+
+[madlib](101-102/madlib.py)
+
+[unitConverter](101-102/unitConverter.py)
+
+[varsAndPrinting](101-102/varsAndPrinting.py)
+
+[varStringsFormatting](101-102/varStringsFormatting.py)
+
+[wordCount](101-102/wordCount.py)
+
+[wordCount Resource](101-102/countwords.txt)
+
 [Fullstack Course](https://github.com/PdxCodeGuild/class_mountain_goat)
 
 solutions for the python fullstack course
