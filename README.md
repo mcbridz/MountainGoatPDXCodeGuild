@@ -16,6 +16,8 @@
 
 [lab 5](Lab%20Solutions/lab5-random_emoticon_generator.py)
 
+[lab 6](Lab%20Solutions/lab6-passwordGenerator.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
