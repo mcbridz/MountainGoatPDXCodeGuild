@@ -18,6 +18,8 @@
 
 [lab 6](Lab%20Solutions/lab6-passwordGenerator.py)
 
+[lab 7](Lab%20Solutions/lab7-RockPaperScissors.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
