@@ -21,31 +21,6 @@ def split(word):
     return [char for char in word]
 
 
-
-def generateChar(length, inventory):    
-    typeLimit = (length / 4) + 4
-    while True:
-        choices = random.randrange(0,3)
-        if choices == 0 and (inventory["uppersReturned"]) <= typeLimit:
-            inventory["uppersReturned"] += 1
-            return generateUpper()
-        elif choices == 1 and (inventory["lowersReturned"]) <= typeLimit:
-            inventory["lowersReturned"] += 1
-            return generateLower()
-        elif choices == 2 and (inventory["specialsReturned"]) <= typeLimit:
-            inventory["specialsReturned"] += 1
-            return generateSpChr()
-        #elif choices == 3 and numsReturned <= typeLimit:
-        else:
-            inventory["numsReturned"] += 1
-            return generateNum()
-        
-def finalCheck(list):
-    for i in list:
-        if i == '_':
-            return False
-    return True
-
 def main():    
     while True:
         inventory = {"uppersReturned": 0, "lowersReturned": 0, "specialsReturned": 0, "numsReturned": 0
@@ -58,6 +33,7 @@ def main():
         specs = 0
         def status():
             print(f'''
+            length : {length}
             uppers : {upper}
             lowers : {lower}
             nums   : {nums}
