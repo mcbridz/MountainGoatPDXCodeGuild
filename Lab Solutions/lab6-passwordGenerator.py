@@ -23,9 +23,6 @@ def split(word):
 
 def main():    
     while True:
-        inventory = {"uppersReturned": 0, "lowersReturned": 0, "specialsReturned": 0, "numsReturned": 0
-        
-        }
         length = 0
         upper = 0
         lower = 0
@@ -40,19 +37,19 @@ def main():
             specs  : {specs}
             ''')
         status()
-        length = int(input("How long of a password would you like?"))
+        length = int(input("How long of a password would you like?" ))
         status()
-        upper = int(input("How many upper-case?"))
+        upper = int(input("How many upper-case?" ))
         status()
-        lower = int(input("How many lower-case?"))
+        lower = int(input("How many lower-case?" ))
         status()
-        nums = int(input("How many numbers?"))
+        nums = int(input("How many numbers?" ))
         status()
-        specs = int(input("How many special chars?"))
+        specs = int(input("How many special chars?" ))
         status()
         if (upper + lower + nums + specs) != length:
             print("Your numbers do not add up, please try again.")
-            r = input("Press ENTER to restart, type exit to end program")
+            r = input("Press ENTER to restart or type exit to end program ")
             if r != '':
                 break
             continue
