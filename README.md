@@ -20,6 +20,8 @@
 
 [lab 7](Lab%20Solutions/lab7-RockPaperScissors.py)
 
+[lab 8](Lab%20Solutions/lab8-guess-a-number.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
@@ -40,4 +42,3 @@
 
 [Fullstack Course](https://github.com/PdxCodeGuild/class_mountain_goat)
 
-solutions for the python fullstack course
