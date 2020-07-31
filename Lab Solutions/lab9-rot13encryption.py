@@ -8,6 +8,9 @@ def encrypt(input_string, n):
     encoding_wheel = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_=+[{]}|;:',<.> "
     output_string = ""
     for char in input_string:
+        #output = rotation on encoding_wheel from index of 
+        #         input char in the  encoding_wheel + 
+        #         rotation factor % length of encoding wheel
         output_string += encoding_wheel[(encoding_wheel.index(char) + n) % len(encoding_wheel)]
     return output_string
 
