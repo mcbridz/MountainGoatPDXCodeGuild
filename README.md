@@ -6,6 +6,8 @@
 
 [Hello World](hello_world.py)
 
+[Personal Library](Lab%20Solutions/personalLibrary.py)
+
 [lab 1](Lab%20Solutions/lab01-turtle.py)
 
 [lab 2](Lab%20Solutions/lab02-madlib.py)
