@@ -22,6 +22,8 @@
 
 [lab 8](Lab%20Solutions/lab8-guess-a-number.py)
 
+[lab 9](Lab%20Solutions/lab9-rot13encryption.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
