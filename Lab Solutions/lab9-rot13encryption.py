@@ -4,8 +4,7 @@
 import personalLibrary
 
 def encrypt(input_string, n):
-    #len(encoding_wheel) = 79
-    encoding_wheel = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()-_=+[{]}|;:',<.> "
+    encoding_wheel = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[{]}|;:'\"\\/,<.>? "
     output_string = ""
     for char in input_string:
         #output = rotation on encoding_wheel from index of 
