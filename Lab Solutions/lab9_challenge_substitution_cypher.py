@@ -19,15 +19,20 @@ def cypher_generator():
     cypher = ''.join(encoding_list)
     #print(encoding_list)
     for i in range(len(encoding_wheel)):
-        additional_complexity = ""
-        additional_rand_chars = random.randint(0,5)
-        while len(additional_complexity) <= additional_rand_chars:
-            additional_complexity += encoding_wheel[random.randint(0, (len(encoding_wheel) - 1))]       
-        case = {encoding_wheel[i]: (cypher[i] + additional_complexity)}
+        #additional_complexity = ""
+        # additional_rand_chars = random.randint(0,5)
+        # while len(additional_complexity) <= additional_rand_chars:
+        #     additional_complexity += encoding_wheel[random.randint(0, (len(encoding_wheel) - 1))]       
+        # case = {encoding_wheel[i]: (cypher[i] + additional_complexity)}
+        case = {encoding_wheel[i]: (cypher[i])}
         output_dict.update(case)
-    #print(output_dict)
+    # print(output_dict)
     return output_dict
 
+
+# def decryptor(input):
+#     ...
+#     #return output   
 
 #encryption function
 def encrypt(input, cypher):
