@@ -120,9 +120,9 @@
 #random values between 0 and 100
 import random
 import time
-seed = time.time()
-print('the seed is', seed)
-random.seed(seed)
+# seed = time.time()
+# print('the seed is', seed)
+# random.seed(seed)
 def random_list(n): #5! = 5*4*3*2*1
     output = []
     while len(output) < n:
@@ -194,9 +194,9 @@ def bogosort(nums):
     
 
 # print(bogosort([8, 5, 2, 7, 9, 1]))
-nums = random_list(9)
-bogosort(nums)
-print(nums)
+# nums = random_list(9)
+# bogosort(nums)
+# print(nums)
 
 # nums.sort()
 # print(nums)
@@ -218,6 +218,15 @@ print(nums)
 #     print('list length',list_length,total)
 
 
-import time
-print(time.time())
+# import time
+# print(time.time())
+
+def remove_empty(mylist):
+    while True:
+        try:
+            mylist.remove('')
+        except:
+            return mylist
+
+print(remove_empty(['a','b','','c','','d']))
 
