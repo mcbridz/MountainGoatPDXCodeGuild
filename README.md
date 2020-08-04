@@ -26,6 +26,8 @@
 
 [lab 9](Lab%20Solutions/lab9-rot13encryption.py)
 
+[lab 10](Lab%20Solutions/lab10-peaks_and_valleys.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
