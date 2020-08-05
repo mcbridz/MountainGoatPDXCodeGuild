@@ -53,9 +53,32 @@ def make_pretty_helper(input):
 #quiet return
 #make_pretty(<int input>):str output
 def make_pretty(input):
+    """Takes string input, converts to list, inserts commas, then returns as list
+    
+    Parameters:
+    input (str): input argument for conversion
+
+    Returns:
+    String output pretty number (1,000)
+    """
     check_num = int(input)
     if type(check_num) == int:
         return make_pretty_helper(input)
     else:
         return "NaN"
 
+
+import string
+def pad_money_with_zeroes(num_input):
+    output = str(num_input)
+    index_of_decimal = num_input.find('.')
+    delta_strings = 2 - len(num_input) + 1 + index_of_decimal
+    if delta_strings > 0:
+        pad_zeroes = '0'*delta_strings
+        output += pad_zeroes
+    return output
+
+def round_pad_zeroes(num, digits = 2):
+    num = str(float(round(num, digits)))
+    num += '0'*(digits-len(num)+1+num.index('.'))
+    return num
