@@ -28,6 +28,8 @@
 
 [lab 10](Lab%20Solutions/lab10-peaks_and_valleys.py)
 
+[lab 11](Lab%20Solutions/lab11-make_change.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
