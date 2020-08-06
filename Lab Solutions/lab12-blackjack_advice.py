@@ -125,6 +125,20 @@ def blackjack_advice(hand, advice, card_values):
                 Hand 1 = {total1}, {advice.get(total1, 'Already Busted!')}
                 Hand 2 = {total2}, {advice.get(total2, 'Already Busted!')}
                 """)
+        elif total1 <= 21 or total2 <= 21:
+            print(
+                f"""
+                You have one hand in active play!
+                Hand 1 = {total1}, {advice.get(total1, 'Already Busted!')}
+                Hand 2 = {total2}, {advice.get(total2, 'Already Busted!')}
+                """)
+        else:
+            print(
+                f"""
+                You have no hands in active play!
+                Hand 1 = {total1}, {advice.get(total1, 'Already Busted!')}
+                Hand 2 = {total2}, {advice.get(total2, 'Already Busted!')}
+                """)
     else:
         total = find_total(hand, card_values)
         print(f"Your hand is {total}, {advice.get(total, 'Already Busted!')}")
