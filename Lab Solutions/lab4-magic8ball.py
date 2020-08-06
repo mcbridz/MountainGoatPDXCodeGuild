@@ -7,11 +7,14 @@ possibilities = {1: "It is certain", 2: "It is decidedly so.", 3: "Without a dou
 
 def main():
     print(welcome)
-    question = input("Ask your question... if you dare! ")
-    answer = 0
-    for i in question:
-        answer += ord(i)
-    answer = (answer % 16) + 1
-    print(possibilities[answer])
+    while True:
+        question = input("Ask your question... if you dare! ")
+        answer = 0
+        for i in question:
+            answer += ord(i)
+        answer = (answer % 16) + 1
+        print(possibilities[answer])
+        if input("Would you like to play again? Press ENTER to continue, 'quit' to exit. ") != '':
+            break
 
 main()
