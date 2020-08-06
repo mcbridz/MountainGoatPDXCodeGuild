@@ -106,6 +106,12 @@ def human_guesses():
         #reset(list_of_guesses, guesses)
         personalLibrary.clear()
 
+def check_for_full_number_line_segment(number_line, start, stop):
+    for i in range(start, stop):
+        if number_line[i] != 1:
+            return i + 1
+    return check_for_full_number_line_segment(number_line, 1, len(number_line))
+
 def computer_guesses():
     list_of_guesses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     number_line = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -126,7 +132,7 @@ def computer_guesses():
         else:
             if warmer_colder == 'warmer':
                 while list_of_guesses[computer_guess - 1] == 1:
-                    computer_guess = random.randint(trailing_guess, len(list_of_guesses))
+                    computer_guess = check_for_full_number_line_segment(list_of_guesses, trailing_guess, len(list_of_guesses))
                 if input(f"Is your guess {computer_guess}? Enter yes/no. ").lower() == "yes":
                     print("Computer wins!")
                     break
@@ -135,7 +141,7 @@ def computer_guesses():
                     warmer_colder = input("Invalid entry, please enter <warmer> or <colder>")
             else:
                 while list_of_guesses[computer_guess - 1] == 1:
-                    computer_guess = random.randint(1, trailing_guess)
+                    computer_guess = check_for_full_number_line_segment(list_of_guesses, trailing_guess, len(list_of_guesses))
                 if input(f"Is your guess {computer_guess}? Enter yes/no. ").lower() == "yes":
                     print("Computer wins!")
                     break
