@@ -69,7 +69,7 @@ def declare_winner(solution_line):
 import time
 # time.sleep(2)
 
-def main():
+def human_guesses():
     while True:
         list_of_guesses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         number_line = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -105,8 +105,44 @@ def main():
             break
         #reset(list_of_guesses, guesses)
         personalLibrary.clear()
-        
-            
-        
 
-main()
+def computer_guesses():
+    list_of_guesses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    number_line = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    guesses = 0
+    trailing_guess = ''
+    warmer_colder = ''
+    if input("Think of a number... press ENTER when ready, or 'quit' to exit") != '':
+        quit()
+    while True:
+        print_guesses_and_lines(list_of_guesses, number_line, guesses)
+        if trailing_guess == '':
+            computer_guess = random.randint(1,10)
+            if input(f"Is your guess {computer_guess}? Enter yes/no. ").lower() == "yes":
+                print("Computer wins!")
+                break
+            guesses = mark_guess(computer_guess, guesses, list_of_guesses)
+            trailing_guess = computer_guess
+        else:
+            if warmer_colder == 'warmer':
+                while list_of_guesses[computer_guess - 1] == 1:
+                    computer_guess = random.randint(trailing_guess, len(list_of_guesses))
+                if input(f"Is your guess {computer_guess}? Enter yes/no. ").lower() == "yes":
+                    print("Computer wins!")
+                    break
+                warmer_colder = input('Is the computer warmer or colder? Enter <warmer> or <colder> ').lower()
+                while warmer_colder != "warmer" and warmer_colder != "colder":
+                    warmer_colder = input("Invalid entry, please enter <warmer> or <colder>")
+            else:
+                while list_of_guesses[computer_guess - 1] == 1:
+                    computer_guess = random.randint(1, trailing_guess)
+                if input(f"Is your guess {computer_guess}? Enter yes/no. ").lower() == "yes":
+                    print("Computer wins!")
+                    break
+                warmer_colder = input('Is the computer warmer or colder? Enter <warmer> or <colder> ').lower()
+                while warmer_colder != "warmer" and warmer_colder != "colder":
+                    warmer_colder = input("Invalid entry, please enter <warmer> or <colder>")
+            guesses = mark_guess(computer_guess, guesses, list_of_guesses)
+            trailing_guess = computer_guess
+
+computer_guesses()

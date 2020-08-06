@@ -68,6 +68,8 @@ def make_pretty(input):
         return "NaN"
 
 
+
+
 import string
 def pad_money_with_zeroes(num_input):
     output = str(num_input)
