@@ -36,7 +36,7 @@ def pad_money_with_zeroes(num_input):
     output = str(num_input)
     index_of_decimal = num_input.find('.')
     delta_strings = 2 - len(num_input) + 1 + index_of_decimal
-    if delta_strings > 0: #2 - ((1. -> 2) - 1 - (1. -> 1)) 
+    if delta_strings > 0:
         pad_zeroes = '0'*delta_strings
         output += pad_zeroes
     return output
@@ -51,6 +51,7 @@ def number_of_coinX_in(total, coin):
 def make_change(total, coins):
     if total.find('.') == -1:
         total += '.00'
+    
     #take total, convert from string to float, multiply by 100 to have values on the 
     #same order as the tuple values, then round, because computers to weird things with
     #floats meant to approximate whole numbers
@@ -68,7 +69,7 @@ def make_change(total, coins):
         # debug code prior to implementing single-string method
         # print(f"There are {round(number_of_coinX_in(running_total, coins[i][1]))} {coins[i][0]} in ${total}")
 
-        # if there are >0 of a certain coin in the fed running_total
+        # if there are >0 of a certain coin in the parameter running_total
         if round(number_of_coinX_in(running_total, coins[i][1])) > 0:
 
             #add "<int> <coins>"
@@ -96,6 +97,7 @@ def main(coins):
         make_change(total, coins)
         # make_change(1.01, coins)
         if input("Press ENTER to continue, type <quit> to quit.") != "":
+            print("Good-bye!")
             return
 
 main(coins)
