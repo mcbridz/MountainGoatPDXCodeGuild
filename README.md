@@ -42,8 +42,6 @@
 
 [madlib](101-102/madlib.py)
 
-[unitConverter](101-102/unitConverter.py)
-
 [varsAndPrinting](101-102/varsAndPrinting.py)
 
 [varStringsFormatting](101-102/varStringsFormatting.py)
