@@ -172,7 +172,7 @@ def bogosort(nums):
     # if is_sort(nums):
     #     return
     # shuffle(nums)
-    outcome = None
+    #outcome = None
     start_time = time.time()
     tries = 0
     # while outcome != True:

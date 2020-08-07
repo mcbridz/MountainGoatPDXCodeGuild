@@ -137,6 +137,7 @@ def break_and_translate(input_num):
         list_num.insert(0, '0')
     return_string = ""
     i = len(list_num)
+    triplets = 0
     while i > 0:           
         # broken_off_hundreds = list_num[i-3:i]  #list slicing non-inclusive on upper-bound
         # broken_off_hundreds = ''.join(broken_off_hundreds)

@@ -34,6 +34,8 @@
 
 [lab 13](Lab%20Solutions/lab13-unit_converter.py)
 
+[lab 14](Lab%20Solutions/lab14-number_to_phrase.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
