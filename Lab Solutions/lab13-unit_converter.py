@@ -77,7 +77,7 @@ while True:
     rounded = 0
 
     #Massaging output to ensure easy readability for user
-    if (result - round(result))*10000 < 1:
+    if (result - round(result))*10000 < 1: #12345.6789 - 12345 = 0.6789, 0.6789 * 10000 = 6789 => significant figures in first four decimal places => extended rounding unnecessary
         result = round(result,8)
         rounded = 8
     else:
