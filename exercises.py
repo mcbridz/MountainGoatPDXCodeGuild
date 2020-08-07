@@ -221,12 +221,19 @@ def bogosort(nums):
 # import time
 # print(time.time())
 
-def remove_empty(mylist):
-    while True:
-        try:
-            mylist.remove('')
-        except:
-            return mylist
+# def remove_empty(mylist):
+#     while True:
+#         try:
+#             mylist.remove('')
+#         except:
+#             return mylist
 
-print(remove_empty(['a','b','','c','','d']))
+# print(remove_empty(['a','b','','c','','d']))
 
+# car = {
+
+# }
+
+# x = car.items()
+
+# print(x)

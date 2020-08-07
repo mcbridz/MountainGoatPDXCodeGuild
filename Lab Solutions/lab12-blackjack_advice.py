@@ -81,11 +81,25 @@ card_values = {
 }
 
 def card_validation(card, card_values):
+    """
+    Function taking in card<str> and card_values<dict> to validate that the card provided is a possible card, requiring user to input a valid card if not.
+    
+    Parameters: card<str> card_values<dict>
+
+    output: card<str>
+    """
     while card not in card_values:
         card = input("Invalid card selection, please try again. ")
     return card
 
 def get_cards(card_values):
+    """
+    Function specific to three-card blackjack advice program, using the card_values<dict> to validate user input in-process.
+
+    Parameters: card_values<dict>
+
+    Output: cards<list[3]>
+    """
     cards = []
     cards.append(input("What is your first card? "))
     cards[0] = card_validation(cards[0], card_values)
@@ -96,11 +110,14 @@ def get_cards(card_values):
     return cards
 
 def find_total(cards, card_values):
-    '''Function to find possible numerical values from a hand of three cards
-    Input: cards<list-ints>, card_values<dict>
-    Output: (aces) <int-value>, <int-value>
-         (no aces) <int-value>
-    '''
+    """
+    Function to find possible numerical values from a hand of three cards
+    
+    Parameters: cards<list-ints>, card_values<dict>
+    
+    Output: (aces): <int-value>, <int-value> 
+    (no aces): <int-value>
+    """
     sum = 0
     if 'A' in cards:
         for card in cards:
@@ -111,11 +128,17 @@ def find_total(cards, card_values):
             sum += card_values.get(card)
         return sum
 
+
+
 def blackjack_advice(hand, advice, card_values):
-    '''Function gives advice based on list of cards.
-    Parameters: cards<list-ints>
+    """
+    Function gives advice based on list of cards.
+    
+    Parameters: hand<list>, advice<dict>, card_values<dict>
+
     Output: Matched to advice dictionary to determine hit/stay/bust
-    '''
+    """
+    
     if 'A' in hand:
         total1, total2 = find_total(hand, card_values)
         if total1 <= 21 and total2 <= 21:

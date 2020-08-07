@@ -30,6 +30,10 @@
 
 [lab 11](Lab%20Solutions/lab11-make_change.py)
 
+[lab 12](Lab%20Solutions/lab12-blackjack_advice.py)
+
+[lab 13](Lab%20Solutions/lab13-unit_converter.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
