@@ -105,7 +105,10 @@ def hundreds_translate(input_num, triplets):
         return_string += f"{distal_digits[triplets]} "
         return return_string
     elif int_num < 100:
-        return_string += tens_not_tweens[int(list_num[len(list_num) - 2])]
+        return_string += tens_not_tweens[int(list_num[0])]
+        if list_num[1] != 0:
+            return_string += '-'
+            return_string += ones_not_teens[int(list_num[1])]
         # return_string += " hundred"
         return_string += f"{distal_digits[triplets]} "
         return return_string
