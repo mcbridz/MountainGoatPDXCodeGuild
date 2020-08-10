@@ -85,7 +85,7 @@ def hundreds_translate(input_num, triplets):
 
     Parameters: input_num<int>
 
-    Outpu: return_string<str>
+    Output: return_string<str>
     """
     if input_num == 0:
         return ""

@@ -36,6 +36,8 @@
 
 [lab 14](Lab%20Solutions/lab14-number_to_phrase.py)
 
+[lab 15](Lab%20Solutions/lab15-count_words.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
