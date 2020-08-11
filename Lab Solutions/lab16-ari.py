@@ -51,7 +51,7 @@ text = '\n'.join(list_text)
 def ari(text):
     text_of_chars = re.split(r'\w', text) #with test text, 99
     text_of_words = re.split(r'\s', text) #with test text, 24
-    text_of_sentances = re.split(r"[\.!]\s|\?", text) #with test text, 4
+    text_of_sentances = re.split(r"[\.!]\s|\?[\"\s]", text) #with test text, 4
     chars = len(text_of_chars)
     words = len(text_of_words)
     sents = len(text_of_sentances)
