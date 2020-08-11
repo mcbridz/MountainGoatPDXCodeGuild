@@ -38,6 +38,8 @@
 
 [lab 15](Lab%20Solutions/lab15-count_words.py)
 
+[lab 16](lab%20Solutions/lab16-ari.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
