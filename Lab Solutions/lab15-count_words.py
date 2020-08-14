@@ -173,27 +173,27 @@ word_instances_printer(response_text, ignored_words)
 word_pairs_printer(response_text)
 
 ####################REPL##################
-while True:
-    preceding_word = input("Please type the word you would like to check for following words: ").lower()
-    #reuse existing code
-    paired_words = build_dict_of_word_pairs(response_text)
-    print(f"The following words follow your chosen word of {preceding_word}: ")
-    temp_paired_words = paired_words
-    #pull off all keys into a list of strings
-    temp_tuples = [pairs for key in temp_paired_words for pairs in key]
-    # print(temp_tuples)
-    i = 0
-    found_any = False
-    # accounting for forward checking past range
-    while i < len(temp_tuples) - 2:
-        # indicates that the word being checked is in the correct position
-        if i % 2 == 0 and temp_tuples[i] == preceding_word:
-            #print following word from preceding word
-            print(temp_tuples[i+1] + ',')
-            found_any = True
-        if found_any == False:
-            print("No matching words were found.")
-        i += 1
-    print()
-    if input("Press ENTER to continue, type quit to exit program. ") != "":
-        break
+# while True:
+#     preceding_word = input("Please type the word you would like to check for following words: ").lower()
+#     #reuse existing code
+#     paired_words = build_dict_of_word_pairs(response_text)
+#     print(f"The following words follow your chosen word of {preceding_word}: ")
+#     temp_paired_words = paired_words
+#     #pull off all keys into a list of strings
+#     temp_tuples = [pairs for key in temp_paired_words for pairs in key]
+#     # print(temp_tuples)
+#     i = 0
+#     found_any = False
+#     # accounting for forward checking past range
+#     while i < len(temp_tuples) - 2:
+#         # indicates that the word being checked is in the correct position
+#         if i % 2 == 0 and temp_tuples[i] == preceding_word:
+#             #print following word from preceding word
+#             print(temp_tuples[i+1] + ',')
+#             found_any = True
+#         if found_any == False:
+#             print("No matching words were found.")
+#         i += 1
+#     print()
+#     if input("Press ENTER to continue, type quit to exit program. ") != "":
+#         break

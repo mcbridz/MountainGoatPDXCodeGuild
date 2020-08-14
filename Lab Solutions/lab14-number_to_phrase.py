@@ -66,7 +66,8 @@ distal_digits = {
     2: " thousand",
     3: " million",
     4: " billion",
-    5: " trillion"
+    5: " trillion",
+    6: " quadrillion"
 }
 
 def number_of_digits(input_num):
@@ -92,7 +93,6 @@ def hundreds_translate(input_num, triplets):
     list_num = list(str(input_num))
     int_num = input_num
     return_string = ""
-    # first_significant_digit = 0
     if int_num < 10:
         if triplets <= 1:
             return_string += " and "
@@ -109,14 +109,11 @@ def hundreds_translate(input_num, triplets):
         if list_num[1] != 0:
             return_string += '-'
             return_string += ones_not_teens[int(list_num[1])]
-        # return_string += " hundred"
         return_string += f"{distal_digits[triplets]} "
         return return_string
     else:
         return_string += ones_not_teens[int(list_num[0])]
         return_string += " hundred"
-        # if triplets > 2:
-        #     return_string += f"{distal_digits[triplets]} "
         if list_num[1] == '0' and list_num[2] == '0':
             return_string += distal_digits[triplets]
             return return_string
@@ -153,10 +150,7 @@ def break_and_translate(input_num):
     return_string = ""
     i = 0
     triplets = len(list_num) // 3
-    while i < len(list_num) - 1:           
-        # broken_off_hundreds = list_num[i-3:i]  #list slicing non-inclusive on upper-bound
-        # broken_off_hundreds = ''.join(broken_off_hundreds)
-        # broken_off_hundreds = int(broken_off_hundreds)
+    while i < len(list_num) - 1:
         broken_off_hundreds = int(''.join(list_num[i:i+3]))      #012345678
         return_string += hundreds_translate(broken_off_hundreds, triplets) #001234567
         triplets -= 1
@@ -184,11 +178,14 @@ def break_and_translate(input_num):
 # print(break_and_translate(100000000))
 # print(break_and_translate(100000001))
 
-print("Welcome to the number translator!")
-while True:
-    input_num = input("Enter a number between one(1) and nine hundred and ninety-nine trillion(999,999,999,999,999) ")
-    input_num = int(input_num)
-    translated_num = break_and_translate(input_num)
-    print(f"You entered {input_num}. That is translated to: \n\t {translated_num}")
-    if input("Press ENTER to continue, or type anything to quit. ") != "":
-        break
+# print("Welcome to the number translator!")
+# while True:
+#     input_num = input("Enter a number between one(1) and nine hundred and ninety-nine trillion(999,999,999,999,999) ")
+#     input_num = int(input_num)
+#     translated_num = break_and_translate(input_num)
+#     print(f"You entered {input_num}. That is translated to: \n\t {translated_num}")
+#     if input("Press ENTER to continue, or type anything to quit. ") != "":
+#         break
+
+for i in range(int(10e7) + 2, int(10e8), 137):
+    print(break_and_translate(i))

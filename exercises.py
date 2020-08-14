@@ -237,3 +237,137 @@ def bogosort(nums):
 # x = car.items()
 
 # print(x)
+
+
+# Problem 3: Palindrome
+# A palindrome is a word that's the same forwards or backwards, e.g. 
+# racecar. Another way to think of it is as a word that's equal to 
+# its own reverse. Write a function check_palindrome(word) which 
+# takes a string, and returns True if the string's a palindrome, 
+# or False if it's not.
+
+def check_palindrome(word):
+    word_list = list(word)
+    reversed_word_list = list(reversed(word))
+
+    #comparison method
+    # print(reversed_word_list)
+    # if word_list == reversed_word_list:
+    #     return True
+    # return False
+
+    #iterable method
+    # for i in range(len(word_list)):
+    #     if word_list[i] != reversed_word_list[i]:
+    #         return False
+    # return True
+
+
+    #single iterable with n-length method
+    # for f in range(len(word)//2):
+    #     b = len(word) - f - 1
+    #     if word[f] != word[b]:
+    #         return False
+    # return True
+
+    return word == ''.join(reversed(word))
+
+    
+
+# print(check_palindrome('racecar')) # True
+# print(check_palindrome('palindrome')) # False
+
+
+
+# iterables
+# can be used with a for loop
+# can be converted to a list
+# string, list, tuple, dictionary, range, reverseiterator that reverse returns, dict_keys, dict_values, dict_items
+
+# print(list('hello'))
+# print(list(range(10)))
+# for element in [{'a': 1}, {'b': 2}]:
+#     print(element)
+
+# for char in string
+# for element in list
+# for element in tuple
+# for key in dictionary
+
+# prices = {'apples': 1.0, 'bananas': 0.5, 'cherries': 2.0}
+# print(list(prices.values()))
+# for value in prices.values():
+#     print(value)
+
+# result = str(list(range(10)))
+# print(result)
+
+# Problem 4: Anagram
+# Two words are anagrams of eachother if the letters of one can 
+# be rearranged to fit the other. e.g. anagram and nag a ram. 
+# Write another function check_anagram(word1, word2) that takes 
+# two strings as parameters and returns True if they're anagrams 
+# of eachother, False if they're not. The procedure for comparing 
+# the two strings is as follow:
+
+# Convert each word to lower case (lower)
+# Remove all the spaces from each word (replace)
+# Sort the letters of each word (sorted)
+# Check if the two are equal
+def check_anagram(word1, word2):
+    word1_sorted = [char.lower() for char in word1 if char != ' ']
+    word2_sorted = [char.lower() for char in word2 if char != ' ']
+    word1_sorted.sort()
+    word2_sorted.sort()
+    # print(word1_sorted)
+    # print(word2_sorted)
+    return word1_sorted == word2_sorted
+
+# print(check_anagram('anagram', 'nag a ram')) # True
+# print(check_anagram('sheep', 'goat')) # False
+
+# Hello, my name isn't Zach!
+# ["hello": "\,"", " my name isn": "\'"", "t Zach": !]
+
+
+# Problem 5: Scramble Letters
+# Write a function scramble_letters to scramble the internals 
+# letters of words, but keep first and last letter the same.
+import string
+def scramble_letters(text):
+    words = text.split()
+    list_scrambled = []
+    for word in words:
+        if len(word) < 4:
+            list_scrambled.append(word)
+            continue
+        word_scrambled = ""
+        word_scrambled += word[0]
+        temp_list = list(word)
+        temp_list = temp_list[1:len(word) - 1]
+        # print(temp_list)
+        random.shuffle(temp_list)
+        word_scrambled += ''.join(temp_list)
+        word_scrambled += word[len(word)-1]
+        list_scrambled.append(word_scrambled)
+    return ' '.join(list_scrambled)
+
+            
+
+        
+print(scramble_letters('hello world this is easier')) # hlelo wlrod tihs is esiaer
+
+
+
+
+# Problem 6
+# Write a function cart_total to calculate the total of a shopping cart.
+
+def cart_total(prices, cart):
+    total = 0
+    for item in cart:
+        total += prices[item['item']] * item['quantity']
+    return total
+prices = {'apples': 1.0, 'bananas': 0.5, 'kiwis': 2.0}
+cart = [{'item': 'apples', 'quantity': 3}, {'item': 'kiwis', 'quantity': 4}]
+# print(cart_total(prices, cart)) # 11.0
