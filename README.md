@@ -26,6 +26,8 @@
 
 [lab 9](Lab%20Solutions/lab9-rot13encryption.py)
 
+[lab 9 - substitution](lab%20Solutions/lab9_challenge_substitution_cypher.py)
+
 [lab 10](Lab%20Solutions/lab10-peaks_and_valleys.py)
 
 [lab 11](Lab%20Solutions/lab11-make_change.py)
