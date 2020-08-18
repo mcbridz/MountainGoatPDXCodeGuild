@@ -44,6 +44,8 @@
 
 [lab 17](lab%20Solutions/lab17-rain_data.py)
 
+[lab 18](lab%20Solutions/lab18-atm.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)

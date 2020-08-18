@@ -26,9 +26,9 @@ class ATM:
         self.current_balance = float(0)
         self.interest_rate = 0.1
         self.num_transactions = 0
-        self.note_translation = {'withdraw': 'withdrew', 'deposit': 'deposited', 'interest': 'received interest of '}
+        self.note_translation = {'withdraw': 'withdrew', 'deposit': 'deposited', 'interest': 'received interest of'}
     def transaction_note(self, amount, type):
-        self.transaction_history.append(f'user {self.note_translation[type]} ${amount}')
+        self.transaction_history.append(f'user {self.note_translation[type]} ${amount} Balance: ${self.current_balance}')
     def balance(self):
         return self.current_balance
     def check_withdrawal(self, amount):
