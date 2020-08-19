@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!Filename: lab01-bio.html>
+    <!Author: Zachary McBride>
+        <!-- Lab 1: Bio
+Write up a short bio webpage for someone famous (alive or dead) or a fictional character. Check out the examples
+
+Part 1
+A written introduction
+A link to a Wikipedia article
+A picture of them
+A list of places where they've lived
+A quote from them
+Part 2
+Center the entire content of the body
+Modify the padding and margins on your paragraphs to look better
+Use a custom font
+Part 3
+Pick a color scheme and modify the background, body text, and link text color.
+Change the typeface of the quote.
+Add a rounded border to the picture.
+Change the bullet points on the list of places. -->
+
+
+        <html lang="en">
+        <html>
+
+        <head>
+            <title> Cthulhu COMES! </title>
+            <meta name="author" content="Zachary McBride" <meta name="viewport"
+                content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+            <style>
+                #title {
+                    font-family: 'Russo One', sans-serif;
+                    border: 2px white;
+                    background-color: rgb(158, 123, 124);
+                    color: white;
+                }
+
+                #description {
+                    font-family: 'Amatic SC', cursive;
+                    font-size: 40px;
+                    text-align: center;
+                    color: green;
+                    background-color: rgb(120, 0, 2);
+                }
+
+                .center-picture {
+                    text-align: center;
+                }
+
+                .center-text {
+                    text-align: center;
+                }
+
+                .link-text {
+                    text-align: center;
+                }
+
+                p {
+                    border: 4px solid brown;
+                }
+
+                body {
+                    background-image: url(images/cosmic_space.jpg);
+                }
+            </style>
+        </head>
+
+        <body>
+            <div class=center-text>
+                <h1 id="title">
+                    The Great Dreamer Cometh!
+                </h1>
+                <h2 id="sub-title">
+                    ...always...
+                </h2>
+            </div>
+            <h2 id="pic">
+                <div class=center-picture>
+                    <img src=images/cthulhu_ocean.jpg>
+                </div>
+            </h2>
+            <h3 id="description">
+                <div class=scribble-text>
+                    <p>
+                        <q>...a monster of vaguely anthropoid outline, but with an octopus-like head whose face was a
+                            mass of feelers, a scaly, rubbery-looking body, prodigious claws on hind and fore feet, and
+                            long, narrow wings behind.</q> -Francis Wayland Thurston
+                    </p>
+                </div>
+            </h3>
+            <h3 id="link">
+                <div class=link-text>
+                    <a href="https://earth.google.com/web/@29.61893908,-40.21959855,-3576.73738832a,7210076.06231332d,35y,-0h,0t,0r"
+                        target="_blank">Cthulu's Suspected Home</a>
+                </div>
+            </h3>
+
+            <h5 id="citation">
+                <div class=citation-text>
+                    <a href="https://en.wikipedia.org/wiki/Cthulhu" target="_blank">Wikipedia Info </a>, <a
+                        href="https://www.britannica.com/topic/Cthulhu" target="_blank">Britannica Info</a>
+                </div>
+            </h5>
+        </body>
+
+        </html>
