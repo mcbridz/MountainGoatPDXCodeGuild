@@ -46,6 +46,8 @@
 
 [lab 18](lab%20Solutions/lab18-atm.py)
 
+[lab 19](lab%20Solutions/lab19-quotes.py)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
