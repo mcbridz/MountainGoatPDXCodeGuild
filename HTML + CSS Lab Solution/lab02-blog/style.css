@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'CloneWars';
+    src: url('clonewars-font.ttf') format('truetype');
+}
+header {
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+    font-size: 24px;
+    /* color: rgb(33, 64, 154); */
+    color: rgb(117, 150, 248);
+    text-shadow: 0 0 2px black;
+}
+header span {
+    /* background-color: rgba(247, 225, 166, 0.4); */
+
+}
+nav ul {
+    font-family: 'Russo One', sans-serif;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 18px;
+    color: rgb(117, 150, 248);
+    text-shadow: 0 0 3px black;
+}
+p {
+    font-family: 'CloneWars';
+}
+
+body {
+    background-image: url("background.jpg");
+}
+
+a:link{
+    color: rgb(117, 150, 248);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited{
+    color: rgb(117, 150, 248);
+    background-color: transparent;
+    text-decoration: none;
+}

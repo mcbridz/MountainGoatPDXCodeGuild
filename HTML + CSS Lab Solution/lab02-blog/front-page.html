@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>501st Legion Ombudsman</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        #highlight-pic {
+            max-width: 50%;
+        }
+
+        #left-side>ul {
+            font-family: 'CloneWars';
+        }
+
+        #right-side>ul {
+            font-family: 'CloneWars';
+        }
+
+        #info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+
+        #right-side {
+            text-align: left;
+            margin-left: 33px;
+            width: 35%;
+            min-width: 175px;
+            font-size: medium;
+        }
+
+        #left-side {
+            max-width: 600px;
+        }
+
+        #top-background {
+            background-image: url(thin-helmet.png);
+            background-size: cover;
+            background-position: top;
+        }
+
+        #highlight-pic {
+            text-align: center;
+            width: 35%;
+        }
+
+        #highlight-text {
+            padding: 0;
+            max-width: 250px;
+        }
+
+        #soldier-highlight {
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        #CoC {
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+
+        #soldier-of-the-quarter {
+            text-align: center;
+        }
+
+        #picture {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top-background">
+        <header>
+            <span><a href="front-page.html">501st Legion Ombudsman Page</a></span>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="news-archive.html">News Archive</a></li>
+                <li>Chain of Command</li>
+                <li>Contact Us</li>
+            </ul>
+        </nav>
+    </div>
+    <div id="info">
+        <div id="left-side">
+            <p id="recent-news">
+                21 BBY:
+                The Battle of Kamino, also known as the Raid on Kamino or the Attack on Kamino, was
+                fought during the Clone Wars between the Jedi-led Grand Army of the Galactic Republic and the Droid Army
+                of the Confederacy of Independent systems. The Separatists launched the battle as one of their key
+                campaigns during the war, hoping to capture Kamino and eliminate the cloning facilities in Tipoca City,
+                thus depriving the Republic from creating more clone troopers for their army. The Separatists, led by
+                General Grievous and Asajj Ventress, were repelled by the Republic. However, the attack on Kamino proved
+                the Republic had intelligence leaks and that every Republic planet was vulnerable to assault.</p>
+            <p id="founding">
+            <ul>
+                <p id="CoC">CHAIN OF COMMAND:</p>
+                <li>Commanding Officer: General Skywalker</li>
+                <li>Executive Officer: Commander Rex</li>
+                <li>Year Founded: 22 BBY</li>
+            </ul>
+            </p>
+        </div>
+        <div id="right-side">
+            <p id="soldier-highlight">
+            <p id="soldier-of-the-quarter">SOLDIER OF THE QUARTER</p>
+            <div id="picture"><img src="fives.png" id="highlight-pic"></div>
+            <ul id="highlight-text">
+                <li>Name: CT-5555</li>
+                <li>Nic-name: "Fives"</li>
+                <li>Height: 1.83 m</li>
+                <li>Hatch Year: 24 BBY</li>
+                <li>Citation: Medal of Valor</li>
+            </ul>
+            </p>
+        </div>
+    </div>
+    <div id="signup">
+        <p>
+            <label for="input-email">Email:</label>
+            <input id="input-email" class="input-email" type="text" placeholder="name@dmn.com" />
+            <button>sign up</button>
+        </p>
+    </div>
+
+</body>
+
+</html>
