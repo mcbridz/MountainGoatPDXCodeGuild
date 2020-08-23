@@ -50,6 +50,8 @@
 
 [lab 1](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab01-bio.html)
 
+[lab 2](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/HTML%20%2B%20CSS%20Lab%20Solution/lab02-blog)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
