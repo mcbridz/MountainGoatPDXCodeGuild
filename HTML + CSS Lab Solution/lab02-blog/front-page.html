@@ -46,6 +46,10 @@
             background-position: top;
         }
 
+        #banner {
+            text-align: center;
+        }
+
         #highlight-pic {
             text-align: center;
             width: 35%;
@@ -54,6 +58,9 @@
         #highlight-text {
             padding: 0;
             max-width: 250px;
+            background-color: ivory;
+            border: 1px solid black;
+            border-radius: 5px;
         }
 
         #soldier-highlight {
@@ -67,15 +74,42 @@
         #CoC {
             margin-bottom: 5px;
             margin-top: 0;
+            background-color: ivory;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #CoC-text {
+            background-color: ivory;
+            border: 1px solid black;
+            border-radius: 5px;
         }
 
         #soldier-of-the-quarter {
             text-align: center;
+            background-color: ivory;
+            border: 1px solid black;
+            border-radius: 5px;
         }
 
         #picture {
             text-align: center;
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 240, 0.6);
         }
+
+        #recent-news {
+            background-color: ivory;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        #CoC-text li {}
     </style>
 </head>
 
@@ -88,9 +122,12 @@
             <ul>
                 <li><a href="news-archive.html">News Archive</a></li>
                 <li><a href="chain-of-command.html">Chain of Command</a></li>
-                <li>Contact Us</li>
+                <li><a href="contact-us.html">Contact Us</a></li>
             </ul>
         </nav>
+    </div>
+    <div id="banner">
+        <img src="banner.jpg">
     </div>
     <div id="info">
         <div id="left-side">
@@ -106,21 +143,23 @@
             <p id="founding">
             <ul>
                 <p id="CoC">CHAIN OF COMMAND:</p>
-                <li>Commanding Officer: General Skywalker</li>
-                <li>Executive Officer: Commander Rex</li>
-                <li>Year Founded: 22 BBY</li>
+                <div id="CoC-text">
+                    <li>Commanding Officer: General Skywalker</li>
+                    <li>Executive Officer: Commander Rex</li>
+                    <li>Year Founded: 22 BBY</li>
+                </div>
             </ul>
             </p>
         </div>
         <div id="right-side">
             <p id="soldier-highlight">
             <p id="soldier-of-the-quarter">SOLDIER OF THE QUARTER</p>
-            <div id="picture"><img src="fives.png" id="highlight-pic"></div>
+            <p id="picture"><img src="fives.png" id="highlight-pic"></p>
             <ul id="highlight-text">
                 <li>Name: CT-5555</li>
                 <li>Nic-name: "Fives"</li>
                 <li>Height: 1.83 m</li>
-                <li>Hatch Year: 24 BBY</li>
+                <li>Hatch Year: 32 BBY</li>
                 <li>Citation: Medal of Valor</li>
             </ul>
             </p>

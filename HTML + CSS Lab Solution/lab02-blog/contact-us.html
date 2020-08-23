@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>501st Legion Ombudsman</title>
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        #info {
+            font-family: "CloneWars";
+            font-size: xx-large;
+        }
+
+        .line-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        #top-background {
+            background-image: url(thin-helmet.png);
+            background-size: cover;
+            background-position: top;
+        }
+
+        #headquarters tr,
+        td {
+            background-color: ivory;
+            border: 1px solid black;
+        }
+
+        #headquarters {
+            border: 1px solid black;
+        }
+
+        #table {
+            margin-bottom: 70%;
+        }
+
+        #FAQ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #FAQ-Header {
+            margin: 0;
+            font-size: x-large;
+        }
+
+        #FAQ-Text {
+            margin: 0;
+            font-size: large;
+        }
+
+        @media screen and (max-width: 1500px) {
+            .line-item {
+                flex-direction: column;
+                justify-content: space between;
+                align-items: center;
+            }
+
+            #table {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top-background">
+        <header>
+            <span><a href="front-page.html">501st Legion Ombudsman Page</a></span>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="news-archive.html">News Archive</a></li>
+                <li><a href="chain-of-command.html">Chain of Command</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr>
+    <div id="info">
+        <div class="line-item">
+            <div class="info">
+                <div id="table">
+                    <table id="Headquarters">
+                        <tr>
+                            <td>Headquarters: </td>
+                            <td><a href="mailto:501-L@clones.republic.gov">Contact Us!</a></td>
+                        </tr>
+                        <tr>
+                            <td>Parcel Delivery: </td>
+                            <td><a
+                                    href="https://www.google.com/sky/#latitude=69.08912821791387&longitude=-31.124699999999986&zoom=10&Spitzer=100.00&ChandraXO=0.00&Galex=0.00&IRAS=0.00&WMAP=0.00&Cassini=0.00&slide=10&mI=1&oI=6">Use
+                                    These Coordinates</a></td>
+                        </tr>
+                        <tr>
+                            <td>Commander Email: </td>
+                            <td><a href="mailto:tusken_slaughter@jediorder.gov">tusken_slaughter@jediorder.gov</a></td>
+                        </tr>
+                        <tr>
+                            <td>Executive Officer Email: </td>
+                            <td><a href="mailto:CT7567@clones.republic.gov">CT7567@clones.republic.gov</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="flavor-photo">
+                <img src="writing-home.jpg">
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div id="FAQ">
+        <p id="FAQ-Header">
+            Frequently Asked Contact-Us Questions
+        </p>
+        <p id="FAQ-Text">
+            Do not expect immediate responses, we are a combat unit. We will respond when we can. If faster response
+            is required, contact fleet command <a href="mailto:wafleetcom@republic.gov">here</a>.
+        </p>
+    </div>
+    <div id="signup">
+        <p>
+            <label for="input-email">Email:</label>
+            <input id="input-email" class="input-email" type="text" placeholder="name@dmn.com" />
+            <button>sign up</button>
+        </p>
+    </div>
+
+</body>
+
+</html>

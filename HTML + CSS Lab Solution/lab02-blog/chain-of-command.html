@@ -23,6 +23,7 @@
         .title {
             font-size: x-large;
             margin-top: 0;
+            margin-bottom: 8px;
         }
 
         .body {
@@ -37,6 +38,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
+            align-items: center;
         }
 
         @media screen and (max-width: 800px) {
@@ -64,6 +66,15 @@
         .youtube-link {
             max-width: 40%;
         }
+
+        .stats tr {
+            border-collapse: collapse;
+            background-color: ivory;
+        }
+
+        .stats td {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -76,15 +87,15 @@
             <ul>
                 <li><a href="news-archive.html">News Archive</a></li>
                 <li><a href="chain-of-command.html">Chain of Command</a></li>
-                <li>Contact Us</li>
+                <li><a href="contact-us.html">Contact Us</a></li>
             </ul>
         </nav>
     </div>
     <div id="info">
+        <hr>
         <div class="title">
             General Skywalker
         </div>
-        <hr>
         <div class="entry">
             <div class="stats-block">
                 <table class="stats">
@@ -116,6 +127,82 @@
                     allowfullscreen></iframe>
             </div>
         </div>
+        <hr>
+        <div class="title">
+            Commander CT-7567 "Rex"
+        </div>
+        <div class="entry">
+            <div class="stats-block">
+                <table class="stats">
+                    <tr>
+                        <td>Nick-names</td>
+                        <td>
+                            <div>Sexiest Clone Alive</div>
+                            <div>'Guns Akimbo'</div>
+                            <div>More Shooting Is Better Than Less Shooting</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Accolades</td>
+                        <td>
+                            <div>Distinguished Service Medal</div>
+                            <div>Expert Combat Trooper Badge</div>
+                            <div>Expert Pistol Marksman</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="photo">
+                <img src="Rex.jpg">
+            </div>
+            <div class="youtube-link">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/SCmTtUy14pg" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <hr>
+        <div class="title">
+            Ahsoka Tanno
+        </div>
+        <div class="entry">
+            <div class="stats-block">
+                <table class="stats">
+                    <tr>
+                        <td>Nick-names</td>
+                        <td>
+                            <div>Snips</div>
+                            <div>Aren't You Holding That Wrong?</div>
+                            <div>Secret Hope</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Accolades</td>
+                        <td>
+                            <div>Padawan Of The Jedi Order</div>
+                            <div>Jar'Kai Form Expert</div>
+                            <div>Shien Form V Expert</div>
+                            <div>Electronics Engineering Apprentice</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="photo">
+                <img src="ahsoka.jpg">
+            </div>
+            <div class="youtube-link">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ugMOFoaox9M" frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="signup">
+        <p>
+            <label for="input-email">Email:</label>
+            <input id="input-email" class="input-email" type="text" placeholder="name@dmn.com" />
+            <button>sign up</button>
+        </p>
     </div>
 
 </body>
