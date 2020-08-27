@@ -54,6 +54,16 @@
 
 [lab 3](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/HTML%20%2B%20CSS%20Lab%20Solution/lab3-company)
 
+[lab 4](https://mcbridz.github.io/portfolio.github.io/)
+
+* note: labs 5-1,2,3 are linked via nav-bar, copy repo prior to running navbar links
+
+[lab 5-1](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/unit-converter/unit-converter.html)
+
+[lab 5-2](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/random-password-generator/random-password-generator.html)
+
+[lab 5-3](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/number-to-phrase/number-to-phrase.html)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
