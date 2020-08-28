@@ -58,11 +58,7 @@
 
 * note: labs 5-1,2,3 are linked via nav-bar, copy repo prior to running navbar links
 
-[lab 5-1](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/unit-converter/unit-converter.html)
-
-[lab 5-2](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/random-password-generator/random-password-generator.html)
-
-[lab 5-3](https://github.com/mcbridz/MountainGoatPDXCodeGuild/blob/master/HTML%20%2B%20CSS%20Lab%20Solution/lab4-py-redos/number-to-phrase/number-to-phrase.html)
+[lab 5](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/HTML%20%2B%20CSS%20Lab%20Solution/lab5-py-redos)
 
 ### 101-102 code (pre-bootcamp)
 
