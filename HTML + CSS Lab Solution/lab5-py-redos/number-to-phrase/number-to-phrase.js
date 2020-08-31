@@ -79,10 +79,10 @@ function hundreds_translate(input_num, triplets) {
         return return_string
     }
     else if (int_num < 100) {
-        return_string += tens_not_tweens[int(arr_num[0])]
+        return_string += tens_not_tweens[parseInt(arr_num[0])]
         if (arr_num[1] != 0) {
             return_string += '-'
-            return_string += ones_not_teens[int(arr_num[1])]
+            return_string += ones_not_teens[parseInt(arr_num[1])]
         }
         return_string += `${distal_digits[triplets]} `
         return return_string
@@ -106,7 +106,10 @@ function hundreds_translate(input_num, triplets) {
             return return_string
         }
         else {
-            return_string += ` ${tens_not_tweens[parseInt(arr_num[1])]}-${ones_not_teens[parseInt(arr_num[2])]}`
+            return_string += ` ${tens_not_tweens[parseInt(arr_num[1])]}`
+            if (parseInt(arr_num[2]) != 0) {
+                return_string += `-${ones_not_teens[parseInt(arr_num[2])]}`
+            }
             return_string += `${distal_digits[triplets]} `
             return return_string
         }

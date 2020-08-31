@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <!--Custom CSS-->
+    <style>
+        #num_scores {
+            margin-right: 5%;
+        }
+
+        #instructions {
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+    </style>
+
     <title>Number To Phrase</title>
 </head>
 
@@ -28,18 +40,34 @@
                         Dropdown link
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="./unit-converter/unit-converter.html">Unit Converter</a>
+                        <a class="dropdown-item" href="../unit-converter/unit-converter.html">Unit Converter</a>
                         <a class="dropdown-item"
-                            href="./random-password-generator/random-password-generator.html">Random Password
+                            href="../random-password-generator/random-password-generator.html">Random Password
                             Generator</a>
-                        <a class="dropdown-item" href="./number-to-phrase/number-to-phrase.html">Number To Phrase</a>
-                        <a class="dropdown-item" href="./grading/grading.html">Grading</a>
+                        <a class="dropdown-item" href="../number-to-phrase/number-to-phrase.html">Number To Phrase</a>
+                        <a class="dropdown-item" href="./grading.html">Grading</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
+    <div class="container" id="instructions">
+        Instructions:
+        Enter number of scores to grade, then click "Generate!". If demonstrating code, click
+        "Randomize Scores!", to fill the score fields, then click "Grade!" to evaluate scores.
+    </div>
+    <div class="container" id="cont_scores">
+        <input id="num_scores" type="text" placeholder="Number of Scores" \>
+        <button type="button" class="btn btn-secondary" id="btn_scores">Generate!</button>
+        <button type="button" class="btn btn-secondary" id="scores_rnd" hidden>Randomize Scores!</button>
+        <button type="button" class="btn btn-secondary" id="grade" hidden>Grade!</button>
+        <button type="button" class="btn btn-secondary" id="clear" hidden>Clear!</button>
+    </div>
+    <div class="container" id="div_button"></div>
+    <div class="container" id="score_flds"></div>
 
+    <!--Custom JavaScript-->
+    <script src="grading.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
