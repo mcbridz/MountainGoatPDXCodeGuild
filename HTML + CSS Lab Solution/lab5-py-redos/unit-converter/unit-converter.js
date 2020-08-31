@@ -4,12 +4,12 @@ let src_units = document.querySelector("#src_units")
 let dest_units = document.querySelector("#dest_units")
 let output_div = document.querySelector("#output_div")
 
-let meters_to_X = { "ft": 3.28, "mi": 0.0000621, "in": 39.37, "yd": 1.09361, "km": 0.001 }
-let feet_to_X = { "m": 0.3048, "km": 0.0003048, "in": 12, "yd": 0.333, "mi": 0.0001894 }
-let miles_to_X = { "m": 1609.344, "km": 1.609344, "in": 63360, "yd": 1760, "ft": 5280 }
-let kilom_to_X = { "m": 1000, "in": 39370, "ft": 3280.84, "yd": 1093.61, "mi": 0.6214 }
-let inches_to_X = { "m": 0.0254, "km": 0.0000254, "ft": 0.0833, "yd": 0.0278, "mi": 0.0000158 }
-let yards_to_X = { "m": 0.9144, "km": 0.0009144, "in": 36, "ft": 3, "mi": 0.00057 }
+let meters_to_X = { "ft": 3.28, "mi": 0.0000621, "in": 39.37, "yd": 1.09361, "km": 0.001, "m": 1 }
+let feet_to_X = { "m": 0.3048, "km": 0.0003048, "in": 12, "yd": 0.333, "mi": 0.0001894, "ft": 1 }
+let miles_to_X = { "m": 1609.344, "km": 1.609344, "in": 63360, "yd": 1760, "ft": 5280, "mi": 1 }
+let kilom_to_X = { "m": 1000, "in": 39370, "ft": 3280.84, "yd": 1093.61, "mi": 0.6214, "km": 1 }
+let inches_to_X = { "m": 0.0254, "km": 0.0000254, "ft": 0.0833, "yd": 0.0278, "mi": 0.0000158, "in": 1 }
+let yards_to_X = { "m": 0.9144, "km": 0.0009144, "in": 36, "ft": 3, "mi": 0.00057, "yd": 1 }
 
 let possible_conversions = ["m", "mi", "km", "in", "yd", "ft"]
 
