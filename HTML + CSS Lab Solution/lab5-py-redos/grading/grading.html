@@ -11,6 +11,8 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--Custom CSS-->
+    <link href="../../style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
     <style>
         #num_scores {
             margin-right: 5%;
@@ -20,9 +22,17 @@
             margin-top: 3%;
             margin-bottom: 3%;
         }
+
+        #score_flds {
+            margin-top: 3%;
+        }
+
+        .row {
+            justify-content: left;
+        }
     </style>
 
-    <title>Number To Phrase</title>
+    <title>Grading</title>
 </head>
 
 <body>
@@ -34,6 +44,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html">Home<span class="sr-only"></span></a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +70,7 @@
         "Randomize Scores!", to fill the score fields, then click "Grade!" to evaluate scores.
     </div>
     <div class="container" id="cont_scores">
-        <input id="num_scores" type="text" placeholder="Number of Scores" \>
+        <input id="num_scores" type="number" placeholder="Number of Scores" \>
         <button type="button" class="btn btn-secondary" id="btn_scores">Generate!</button>
         <button type="button" class="btn btn-secondary" id="scores_rnd" hidden>Randomize Scores!</button>
         <button type="button" class="btn btn-secondary" id="grade" hidden>Grade!</button>

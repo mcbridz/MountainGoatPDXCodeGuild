@@ -92,6 +92,7 @@ function hundreds_translate(input_num, triplets) {
         return_string += " hundred"
         if (arr_num[1] == '0' && arr_num[2] == '0') {
             return_string += distal_digits[triplets]
+            return_string += " "
             return return_string
         }
         if (arr_num[1] == '0') {
