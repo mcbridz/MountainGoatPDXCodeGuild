@@ -58,7 +58,7 @@
 
 * note: labs 5-1,2,3 are linked via nav-bar, copy repo prior to running navbar links
 
-[lab 5](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/HTML%20%2B%20CSS%20Lab%20Solution/lab5-py-redos)
+[lab 5](https://mcbridz.github.io/portfolio.github.io/html-js-demo/front-page.html)
 
 [lab 6](https://mcbridz.github.io/portfolio.github.io/html-js-demo/to-do-list/to-do-list.html)
 
