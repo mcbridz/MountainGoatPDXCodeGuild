@@ -13,13 +13,51 @@
     <!--Custom CSS-->
     <link href="../../style.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+        integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
     <style>
-        .row {
-            margin-top: 5%;
-            align-items: center;
+        .container {
+            margin: 3%;
+        }
+
+        #div_instructions {
+            text-align: center;
+        }
+
+        #select_priority {
+            margin-top: 0;
+        }
+
+        label {
+            margin-bottom: 0;
+        }
+
+        #row_one {
+            align-items: flex-end;
+        }
+
+        #todolist {
+            background-color: rgba(248, 249, 250, 0.85) !important;
+        }
+
+        #select_low {
+            color: green;
+        }
+
+        #select_high {
+            color: red;
+        }
+
+        .row-entry {
+            border: 3px solid black;
+            border-radius: 3px;
+            justify-content: space-between;
+            padding: 5px;
+            text-shadow: 1px 1px black;
         }
     </style>
-    <title>Unit Converter</title>
+
+    <title>To-Do List</title>
 </head>
 
 <body>
@@ -40,61 +78,49 @@
                         Dropdown link
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="./unit-converter.html">Unit Converter</a>
+                        <a class="dropdown-item" href="../unit-converter/unit-converter.html">Unit Converter</a>
                         <a class="dropdown-item"
                             href="../random-password-generator/random-password-generator.html">Random Password
                             Generator</a>
                         <a class="dropdown-item" href="../number-to-phrase/number-to-phrase.html">Number To Phrase</a>
                         <a class="dropdown-item" href="../grading/grading.html">Grading</a>
-                        <a class="dropdown-item" href="../to-do-list/to-do-list.html">To-Do List</a>
+                        <a class="dropdown-item" href="./to-do-list.html">To-Do List</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
 
+    <div class="container" id="div_instructions">Enter your "To-Do" items in the below field, click on individual items
+        in the list that populates below the enter field to strike completed items.</div>
     <div class="container" id="below-navbar">
-        <div class="row">
-            <div class="col-sm" id="value-container">
-                <input id="value" type="number" />
+        <div class="row" id="row_one">
+            <div class="col-9" id="col_input">
+                <input type="text" class="form-control" id="input_todo" placeholder="Enter To-Do Item Here" />
             </div>
-            <div class="col-sm">
-                <select class="form-control form-control-lg" id="src_units">
-                    <!-- ["m", "mi", "km", "in", "yd"] -->
-                    <option value="m">Meters</option>
-                    <option value="ft">Feet</option>
-                    <option value="mi">Miles</option>
-                    <option value="in">Iches</option>
-                    <option value="km">Kilometers</option>
-                    <option value="yd">Yards</option>
+            <div class="col-2">
+                <label>Priority</label>
+                <select class="form-control" id="select_priority">
+                    <option value="black" id="select_normal">Normal</option>
+                    <option value="rgb(0,255,0)" id="select_low">Low</option>
+                    <option value="red" id="select_high">High</option>
                 </select>
             </div>
-            <div class="col-sm">
-                =>
+            <div class="col-1">
+                <button class="btn btn-light" id="scribe">Scribe!</button>
             </div>
-            <div class="col-sm">
-                <select class="form-control form-control-lg" id="dest_units">
-                    <!-- ["m", "mi", "km", "in", "yd"] -->
-                    <option value="m">Meters</option>
-                    <option value="ft">Feet</option>
-                    <option value="mi">Miles</option>
-                    <option value="in">Iches</option>
-                    <option value="km">Kilometers</option>
-                    <option value="yd">Yards</option>
-                </select>
-            </div>
-            <div class="col-sm" id="calculate">
-                <button type="button" class="btn btn-secondary" id="calc_but">Calculate</button>
-            </div>
-        </div>
-        <div class="row">
-            <div id="output_div"></div>
         </div>
     </div>
 
+    <div class="container" id="todolist">
+
+    </div>
+
+
+
 
     <!--Custom JavaScript-->
-    <script src="unit-converter.js"></script>
+    <script src="./to-do-list.js"></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
