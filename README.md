@@ -60,6 +60,8 @@
 
 [lab 5](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/HTML%20%2B%20CSS%20Lab%20Solution/lab5-py-redos)
 
+[lab 6](https://mcbridz.github.io/portfolio.github.io/html-js-demo/to-do-list/to-do-list.html)
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
