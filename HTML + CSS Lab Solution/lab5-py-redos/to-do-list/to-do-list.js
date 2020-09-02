@@ -6,10 +6,6 @@ $("#input_todo").keypress(function (key) {
         let left_side = document.createElement("span")
         left_side.innerText = $("#input_todo").val()
         left_side.style.color = $("#select_priority").val()
-        $(left_side).mousedown(function () {
-            left_side.innerHTML = left_side.innerText.strike()
-            left_side.style.color = "rgb(75, 75, 75)"
-        })
         $(left_side).hover(function () {
             $(this).css("cursor", "pointer")
         })
@@ -23,6 +19,16 @@ $("#input_todo").keypress(function (key) {
         right_side.innerText = month + "/" + day + "/" + year
         $(row).append(right_side)
         $("#todolist").append(row)
+        $(left_side).mousedown(function (event) {
+            console.log(event.target)
+            if (left_side.children.length == 0) {
+                left_side.innerHTML = left_side.innerText.strike()
+                left_side.style.color = "rgb(75, 75, 75)"
+            } else {
+                console.log("strike detected")
+                $(row).remove()
+            }
+        })
     }
 })
 $("#scribe").click(function () {
@@ -32,10 +38,6 @@ $("#scribe").click(function () {
     let left_side = document.createElement("span")
     left_side.innerText = $("#input_todo").val()
     left_side.style.color = $("#select_priority").val()
-    $(left_side).mousedown(function () {
-        left_side.innerHTML = left_side.innerText.strike()
-        left_side.style.color = "rgb(75, 75, 75)"
-    })
     $(left_side).hover(function () {
         $(this).css("cursor", "pointer")
     })
@@ -49,4 +51,14 @@ $("#scribe").click(function () {
     right_side.innerText = month + "/" + day + "/" + year
     $(row).append(right_side)
     $("#todolist").append(row)
+    $(left_side).mousedown(function (event) {
+        console.log(event.target)
+        if (left_side.children.length == 0) {
+            left_side.innerHTML = left_side.innerText.strike()
+            left_side.style.color = "rgb(75, 75, 75)"
+        } else {
+            console.log("strike detected")
+            $(row).remove()
+        }
+    })
 })
