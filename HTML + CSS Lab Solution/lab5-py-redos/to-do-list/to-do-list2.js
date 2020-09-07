@@ -61,15 +61,13 @@ $("#scribe").click(function () {
     row.append(right_side)
     $("#todolist").append(row)
     left_side.mousedown(function (event) {
-        console.log(event.target)
-        if (left_side.children.length == 0) {
-            left_side.innerHTML = left_side.innerText.strike()
-            left_side.style.color = "rgb(75, 75, 75)"
+        console.log("left_side.css('text-decoration')= " + left_side.css("text-decoration"))
+        if (left_side.css("text-decoration").includes("line-through")) {
+            console.log("trigger remove")
             row.remove()
-            $("#todolist").append(row)
         } else {
-            console.log("strike detected")
-            row.remove()
+            left_side.css({ "text-decoration": "line-through", "color": "rgb(50, 50, 50)" })
+            $("#todolist").append(row)
         }
     })
 })
