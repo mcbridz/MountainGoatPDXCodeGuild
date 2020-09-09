@@ -36,24 +36,6 @@
         #input_rotation {
             width: 50px;
         }
-
-        .log-item div {
-            text-align: left;
-        }
-
-        .log-text {
-            width: 100%;
-            margin-left: 3%;
-        }
-
-        .log-item {
-            border-bottom: 1px solid black;
-            padding-bottom: 1%;
-        }
-
-        button {
-            margin-bottom: 4px;
-        }
     </style>
 
     <title>rotN</title>
@@ -97,19 +79,22 @@
         <b>[A-Z][a-z][0-9][!@#$%^&*()-_=+[{]}|;:'\"\\/,.? ]</b>(angle brackets are included).</div>
     <div id="app">
         <div class="container form-group" id="div_rotation">
-            <input v-on:input="encrypt_text" v-model="rotation" type="number" id="input_rotation" />
+            <input v-model="rotation" type="number" id="input_rotation" />
         </div>
         <div class="container form-group">
             <div class="row">
-                <div class="col-5 input-group-prepend">
-                    <span class="input-group-text">Plain-Text</span>
-                    <textarea rows="4" cols="50" class="form-control" label="input plain-text here" v-model="plain_text"
-                        placeholder="plain-text here" id="input_plain_text" v-on:input="encrypt_text"></textarea>
+                <div class="col">
+                    <input type="text" v-model="plain_text" placeholder="plain-text here" id="input_plain_text" />
                 </div>
-                <div class="col-2">
+                <div class="col">
                     <div class="row">
                         <div id="encrypt">
-                            <button class="btn btn-primary" v-on:click="save_text" id="btn_save">Save</button>
+                            <button class="btn btn-primary" v-on:click="encrypt_text" id="btn_encrypt">Encrypt</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="decrypt">
+                            <button class="btn btn-primary" v-on:click="decrypt_text" id="btn_decrypt">Decrypt</button>
                         </div>
                     </div>
                     <div class="row">
@@ -118,51 +103,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5 input-group-prepend">
-                    <span class="input-group-text">Cypher-text</span>
-                    <textarea rows="4" cols="50" class="form-control" label="input cypher-text here"
-                        v-model="cypher_text" v-on:input="decrypt_text" placeholder="cypher-text here"
-                        id="input_cypher_text"></textarea>
+                <div class="col">
+                    <input type="text" v-model="cypher_text" placeholder="cypher-text here" id="input_cypher_text" />
                 </div>
             </div>
         </div>
-
-        <!-- <div id="todo_items">
-            <div v-for="(todo, index) in todos">
-                <div>{{index+1}}. {{todo.text}} ({{todo.priority}})</div>
-                <div><a class="btn" v-on:click="removeTodo(index)">X</a></div>
-            </div>
-    </div> -->
-        <div id="log">
-            <div class="row log-item" v-for="(item, index) in data">
-                <div class="col-5">
-                    <div class="row">
-                        Plain Text
-                    </div>
-                    <textarea class="row log-text">{{item.pt}}</textarea>
-                </div>
-                <div class="col-5">
-                    <div class="row">
-                        Cypher Text
-                    </div>
-                    <textarea class="row log-text">{{item.ct}}</textarea>
-                </div>
-                <div class="col-2">
-                    <div class="row">Rotation:</div>
-                    <div class="row">{{item.rv}}</div>
-                    <div class="row">
-                        <button class="btn btn-primary" v-on:click="load(index)">Load</button>
-                    </div>
-                    <div class="row">
-                        <button class="btn btn-primary" v-on:click="delete_item(index)">Delete</button>
-                    </div>
-                </div>
-                <!-- {{index != (data.length - 1)}}
-                <hr v-if="index != (data.length - 1)" /> -->
-            </div>
-        </div>
-
     </div>
+
     <script src="./rotN.js"></script>
 
     <!-- Optional JavaScript -->
