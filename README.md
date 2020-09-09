@@ -62,6 +62,10 @@
 
 [lab 6](https://mcbridz.github.io/portfolio.github.io/html-js-demo/to-do-list/to-do-list.html)
 
+[lab 7](https://mcbridz.github.io/portfolio.github.io/html-js-demo/rotN/rotN.html)
+
+
+
 ### 101-102 code (pre-bootcamp)
 
 [anagramChecker](101-102/anagramChecker.py)
