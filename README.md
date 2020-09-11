@@ -64,6 +64,8 @@
 
 [lab 7](https://mcbridz.github.io/portfolio.github.io/html-js-demo/rotN/rotN.html)
 
+[lab 8](https://mcbridz.github.io/portfolio.github.io/html-js-demo/axios-ajax-cats/cats.html)
+
 
 
 ### 101-102 code (pre-bootcamp)
