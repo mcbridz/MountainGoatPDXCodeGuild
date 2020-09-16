@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <!--Custom CSS-->
+    <link href="../../style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+    <!-- api key -->
+    <script src="secrets.js"></script>
+
+    <!-- google maps -->
+    <!-- <script defer
+        src=https://maps.googleapis.com/maps/api/js?key=AIzaSyAcnor2H2twSxh7QflTWNfmTBiUWBG0Ozs&callback=initMap>
+        </script> -->
+    <!-- owfont icon -->
+    <link href="css/owfont-regular.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .data_fields {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #div_topline_data {
+            margin-bottom: 20px;
+        }
+
+        #div_hourly_data {
+            margin: 0;
+            display: flex;
+        }
+
+        #div_daily_data {
+            margin: 0;
+            display: flex;
+        }
+
+        .weather_row {
+            justify-content: center;
+        }
+
+        .hourly_data {
+            border: 1px solid black;
+            background-color: rgba(248, 249, 250, 0.85) !important;
+            flex-grow: 1;
+        }
+
+        .time_row {
+            justify-content: center;
+        }
+
+        .day_row {
+            justify-content: center;
+        }
+
+        #app {
+            background-color: rgba(234, 239, 240, 0.85);
+        }
+
+        .sub_data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sub_data>div {
+            text-align: center;
+        }
+
+        .data_row {
+            justify-content: center;
+        }
+
+        #div_description {
+            padding-left: 7px;
+        }
+    </style>
+
+    <title>Weather</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="../../index.html">Home<span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown link
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../unit-converter/unit-converter.html">Unit Converter</a>
+                        <a class="dropdown-item"
+                            href="../random-password-generator/random-password-generator.html">Random Password
+                            Generator</a>
+                        <a class="dropdown-item" href="../number-to-phrase/number-to-phrase.html">Number To Phrase</a>
+                        <a class="dropdown-item" href="../grading/grading.html">Grading</a>
+
+                        <a class="dropdown-item" href="../to-do-list/to-do-list.html">To-Do List</a>
+                        <a class="dropdown-item" href="../rotN/rotN.html">rotN Encryption</a>
+                        <a class="dropdown-item" href="../axios-ajax-cats/cats.html">Axios/Ajax/Vue Demo</a>
+                        <a class="dropdown-item" href="./weather.html">Weather</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" id="app">
+        <div class="container" id="div_topline_data">
+            <div class="row data_fields">
+                <div>
+                    <h2><b>{{lat}}, {{long}}</b></h2>
+                </div>
+                <div>
+                    <h5>{{current_time}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <i v-bind:class="current_weather"></i>
+                    </div>
+                    <div class="row" id="div_description">{{description}}</div>
+                </div>
+                <div class="col">
+                    <h1>{{temp}} F</h1>
+                    <h3>(feels like {{wet_bulb}} F)</h3>
+                </div>
+                <div class="col data_fields">
+                    <div class="row">
+                        <h4><b>Humidity: </b>{{humidity}}%</h4>
+                    </div>
+                    <div class="row">
+                        <h4><b>Sunrise: </b>{{sunrise}}</h4>
+                    </div>
+                    <div class="row">
+                        <h4><b>Sunset: </b> {{sunset}}</h4>
+                    </div>
+                    <div class="row">
+                        <button class="btn btn-secondary" v-on:click="alternate_data">Temperature</button>
+                        <!-- <button class="btn btn-secondary">Precipitation</button> -->
+                        <button class="btn btn-secondary" v-on:click="alternate_data">Wind</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row container" id="div_hourly_data">
+            <div class="col hourly_data" v-for="hour in hourly_data">
+                <div class="row time_row">{{hour.hours}}:00</div>
+                <div class="row weather_row">
+                    <i v-bind:class="hour.id"></i>
+                </div>
+                <div class="row data_row">
+                    <div class="sub_data" v-if="temp_not_wind">
+                        <div>{{hour.temp}}</div>
+                        <div>F</div>
+                    </div>
+                    <div class="sub_data" v-if="!temp_not_wind">
+                        <div>{{hour.wind.strength}} mph</div>
+                        <div>{{hour.wind.direction}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- let tmp_day = {
+            day: "",
+            id: 200,
+            min_temp: 72,
+            max_temp: 72,
+        } -->
+        <div class="row container" id="div_daily_data">
+            <div class="col hourly_data" v-for="day in daily_data">
+                <div class="row day_row">{{day.day}}</div>
+                <div class="row weather_row">
+                    <i v-bind:class="day.id"></i>
+                </div>
+                <div class="row sub_data">
+                    <div>High: {{day.max_temp}}F</div>
+                    <div>Low: {{day.min_temp}}F</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- custom JavaScript -->
+    <script>
+        let comp_array = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"]
+        function degToCompass(num) {
+            // console.log(num)
+            let index = Math.round((num / 22.5) + .5)
+            // console.log(index)
+            // console.log(comp_array[index % 16])
+            return comp_array[index % 16]
+        }
+        let day_to_phrase = {
+            0: "Sun",
+            1: "Mon",
+            2: "Tue",
+            3: "Wed",
+            4: "Thu",
+            5: "Fri",
+            6: "Sat",
+            7: "Sun"
+        }
+        let app = new Vue({
+            el: "#app",
+            data: {
+                lat: 44.9329058,
+                long: -123.1682908,
+                current_time: "no data",
+                sunrise: "no data",
+                sunset: "no data",
+                temp: "no data",
+                wet_bulb: "no data",
+                hourly_data: [],
+                daily_data: [],
+                current_weather: "owf owf-200 owf-5x",
+                temp_not_wind: true,
+                humidity: 0,
+                description: "",
+            },
+            created: function () {
+                navigator.geolocation.getCurrentPosition(position => {
+                    console.log("lat :", position.coords.latitude)
+                    console.log("long :", position.coords.longitude)
+                    this.lat = position.coords.latitude
+                    this.long = position.coords.longitude
+                    axios({
+                        method: "get",
+                        url: 'https://api.openweathermap.org/data/2.5/onecall',
+                        params: {
+                            appid: weather_key,
+                            lat: this.lat,
+                            lon: this.long,
+                            units: "imperial"
+                        }
+                    }).then((response) => {
+                        console.log(response.data)
+                        //deal with current day's data
+                        let current = response.data.current
+                        this.current_time = new Date(current.dt * 1000)
+                        let temp_date = new Date(current.sunrise * 1000)
+                        this.sunrise = `${temp_date.getHours() % 12}:${temp_date.getMinutes()}am`
+                        temp_date = new Date(current.sunset * 1000)
+                        this.sunset = `${temp_date.getHours() % 12}:${temp_date.getMinutes()}pm`
+                        this.temp = Math.round(current.temp)
+                        this.wet_bulb = Math.round(current.feels_like)
+                        this.current_weather = `owf owf-${current.weather[0].id} owf-5x`
+                        this.humidity = current.humidity
+                        this.description = current.weather[0].description
+                        //deal with hourly data
+                        let hourly = response.data.hourly
+                        for (let i = 0; i < 8; ++i) {
+                            let tmp_data = {
+                                id: 200,
+                                temp: 0,
+                                wind: {
+                                    strength: 0,
+                                    direction: ""
+                                },
+                                description: "",
+                                hours: 0,
+                                minutes: 0,
+                            }
+                            tmp_hour = hourly[i]
+                            tmp_data.id = `owf owf-${tmp_hour.weather[0].id} owf-2x`
+                            tmp_data.temp = Math.round(tmp_hour.temp)
+                            tmp_data.wind.strength = tmp_hour.wind_speed
+                            tmp_data.wind.direction = degToCompass(tmp_hour.wind_deg)
+                            // console.log(tmp_data.wind.direction)
+                            tmp_data.description = tmp_hour.weather[0].description
+                            tmp_date = new Date(tmp_hour.dt * 1000)
+                            tmp_data.hours = tmp_date.getHours() % 12
+                            tmp_data.minutes = tmp_date.getMinutes()
+                            this.hourly_data.push(tmp_data)
+                        }
+                        console.log(this.hourly_data)
+                        let daily = response.data.daily
+                        for (let i = 0; i < 8; ++i) {
+                            let tmp_day = {
+                                day: "",
+                                id: 200,
+                                min_temp: 72,
+                                max_temp: 72,
+                            }
+                            let tmp_date = new Date(daily[i].dt * 1000)
+                            tmp_day.day = day_to_phrase[tmp_date.getDay()]
+                            tmp_day.id = `owf owf-${daily[i].weather[0].id} owf-2x`
+                            tmp_day.min_temp = Math.round(daily[i].temp.min)
+                            tmp_day.max_temp = Math.round(daily[i].temp.max)
+                            this.daily_data.push(tmp_day)
+                        }
+                        console.log(this.daily_data)
+                    })
+                })
+
+            },
+            methods: {
+                alternate_data: function () {
+                    if (this.temp_not_wind == true) {
+                        this.temp_not_wind = false
+                        return
+                    }
+                    this.temp_not_wind = true
+                }
+            }
+        })
+
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
