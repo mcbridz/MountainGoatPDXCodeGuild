@@ -66,6 +66,10 @@
 
 [lab 8](https://mcbridz.github.io/portfolio.github.io/html-js-demo/axios-ajax-cats/cats.html)
 
+## Django Labs
+
+[lab 1](https://github.com/mcbridz/MountainGoatPDXCodeGuild/tree/master/Django/labs/lab1_polls/mysite)
+
 
 
 ### 101-102 code (pre-bootcamp)
