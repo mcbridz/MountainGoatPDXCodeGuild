@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+</head>
+
+<body>
+    <form action="{% url 'todoapp:save_todo_item' %}" method="post">
+        {% csrf_token %}
+        <input id="input_topline" type="text" name="input_topline" placeholder="Short Description" />
+        <label for="input_topline">Short Description: </label>
+        <input id="input_description" type="text" name="input_description" placeholder="Long Description (if needed)" />
+        <label for="input_description">Long Description (if needed): </label>
+        <input type="submit" value="Save To-Do Item" />
+    </form>
+    <ul>
+        {% for todo_item in todo_items %}
+        <li>
+            <div>
+                {{ todo_item.topline}} : {{ todo_item.date_created }}
+            </div>
+            <span>{{ todo_item.description }}</span>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
