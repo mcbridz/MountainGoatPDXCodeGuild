@@ -1,3 +1,187 @@
 {% extends 'todoapp/base.html' %}
-{% block title %}Index{% endblock %}
-{% block body %}Hello, world{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block style %}
+<style>
+    .date {
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+
+    #buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #container_todo {
+        background-color: #e3f2fd;
+        padding-top: 15px;
+        padding-bottom: 30px;
+    }
+
+    .data {
+        display: flex;
+        align-items: center;
+    }
+
+    #container_input {
+        background-color: #e3f2fd;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    #add_item {
+        height: 40%;
+    }
+
+    #input_group {
+        width: 85%
+    }
+
+    #form_input {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #div_add {
+        display: flex;
+        align-items: center;
+    }
+
+    .line-through {
+        text-decoration: line-through;
+    }
+
+    .completed-todo {
+        color: lightgray;
+    }
+
+    .Urgent.completed-todo {
+        background-color: #FBDDDD;
+    }
+
+    .dropdown {
+        height: 40%;
+    }
+
+    .priority_select {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    .Urgent {
+        background-color: lightcoral;
+    }
+
+    .Trivial {
+        background-color: lightgreen;
+    }
+
+    #priority_and_add {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    @media only screen and (max-width: 768px) {
+        #container_todo {
+            background-color: ivory;
+        }
+
+        #container_input {
+            background-color: rgb(237, 252, 255);
+        }
+
+        #form_input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #add_item {
+            margin-top: 5px;
+            width: 90px;
+        }
+
+        .priority_select {
+            justify-content: flex-end;
+            margin-right: 5px;
+        }
+
+        #div_add {
+            justify-content: flex-end;
+            margin-right: 5px;
+        }
+
+        #input_group {
+            width: 100%;
+        }
+
+        .dropdown {
+            height: auto;
+        }
+
+        #add_item {
+            height: auto;
+        }
+
+        .col-sm-2 {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container" id="container_input">
+    <form action="{% url 'todoapp:save' %}" method="post" id="form_input">
+        {% csrf_token %}
+        <div class="form-group" id="input_group">
+            <label for="description">Short Description: </label>
+            <input type="text" class="form-control" name="description" required />
+            <small class="form-text text-muted">Take out the trash, clean litter-box, etc.</small>
+        </div>
+        <div id="priority_and_add">
+            <div class="priority_select">
+                <select name="priority_id" class="dropdown">
+                    {% for priority in priorities %}
+                    <option value="{{priority.id}}" id="{{priority.priority_text}}">{{ priority.priority_text }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div id="div_add"> <button class="btn btn-primary" id="add_item" type="submit"><i
+                        class="fas fa-plus-circle"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+{% if todo_items %}
+<div class="container" id="container_todo">
+    <ul class="list-group" id="list_todo">
+        {% for todo_item in todo_items %}
+        <div class="container">
+            <li
+                class="list-group-item {{todo_item.priority}} {% if todo_item.completed_date %} completed-todo {% endif %}">
+                <div class="row data-parent  ">
+                    <div class="col-md-6 col-sm-4 data {% if todo_item.completed_date %} line-through {% endif %} ">
+                        {{ todo_item.description }}</div>
+                    <div class="col-md-2 col-sm-3 date data">{{ todo_item.created_date }}</div>
+                    <div class="col-md-2 col-sm-3 date data">{% if todo_item.completed_date %}
+                        {{ todo_item.completed_date }}{% endif %}
+                    </div>
+                    <div class="col-md-2 col-sm-2">
+                        <a class="btn btn-success" href="{% url 'todoapp:check' todo_item.id %}"><i
+                                class="fas fa-check"></i></a>
+                        <a class="btn btn-danger" href="{% url 'todoapp:kill' todo_item.id %}"><i
+                                class="fas fa-skull"></i></a>
+                    </div>
+                </div>
+            </li>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}
