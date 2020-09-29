@@ -1,0 +1,59 @@
+{% extends 'urlshortener_app/base.html' %}
+{%block title%}{{title}}{%endblock%}
+{%block style%}
+<style>
+    #col_submit {
+        display: flex;
+        align-items: center;
+    }
+</style>
+{%endblock%}
+{%block body%}
+<div class="container">
+    <div class="row">
+        <form action="{% url 'urlshort:save' %}" method="POST" class="col s12" id="col_submit">
+            {%csrf_token%}
+            <div class="input-field col s10">
+                <input required type="text" name="input_url">
+                <label for="input_url">URL To Be Shortened</label>
+            </div>
+            <div class="col s2">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s7">
+            <h5>Original URL</h5>
+        </div>
+        <div class="col s3">
+            <h5>Shortened URL</h5>
+        </div>
+        <div class="col s1">
+            <h5>Counter</h5>
+        </div>
+        <div class="col s1"></div>
+    </div>
+    {%for url in urls%}
+    <div class="row">
+        <div class="col s7">
+            <input type="text" disabled value="{{url.long_url}}">
+        </div>
+        <div class="col s3">
+            <input type="text" disabled value="{{url.short_url}}">
+        </div>
+        <div class="col s1">
+            <input type="number" disabled value={{url.counter}}>
+        </div>
+        <div class="col s1">
+            <button class="btn waves-effect waves-light">Copy</button>
+        </div>
+    </div>
+    {%endfor%}
+    <button class="btn waves-effect waves-light">Edit Saved URLs</button>
+</div>
+{%endblock%}
