@@ -50,8 +50,7 @@
             <input type="number" disabled value={{url.counter}}>
         </div>
         <div class="col s1">
-            <button onclick="copyToClipboard('{{url.code}}'); M.toast({html: 'Copied To Clipboard!'})"
-                class="btn waves-effect waves-light">Copy</button>
+            <button onclick="copyToClipboard('{{url.code}}')" class="btn waves-effect waves-light">Copy</button>
         </div>
     </div>
     {%endfor%}
@@ -63,6 +62,7 @@
 <script>
     function copyToClipboard(code) {
         navigator.clipboard.writeText(`http://localhost:8000/urlshortener/${code}/`)
+        M.toast({ html: 'Copied To Clipboard!' })
     }
 </script>
 {%endblock%}

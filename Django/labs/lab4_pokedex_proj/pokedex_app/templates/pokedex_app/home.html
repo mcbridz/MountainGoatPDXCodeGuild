@@ -1,0 +1,105 @@
+{% extends 'pokedex_app/base.html' %}
+{% block title %}Pokedex Home{% endblock %}
+{% block style %}
+<style>
+    #container_body {
+        display: flex;
+        flex-direction: row;
+        background-color: red;
+        min-width: 80%;
+        min-height: 80%;
+        padding: 3%;
+        border: 2px solid black;
+        margin-top: 3%;
+    }
+
+    #left_side {
+        background-color: lightgray;
+        border: 2px solid black;
+    }
+
+    #right_side {}
+
+    #container_btns {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 6px;
+    }
+
+    #btn_name {
+        color: white;
+        background-color: green;
+    }
+
+    #btn_type {
+        color: white;
+        background-color: green;
+    }
+
+    #btn_search {
+        color: white;
+        background-color: black;
+    }
+
+    .arrow_button {
+        width: min-content;
+        height: min-content;
+        color: white;
+        background-color: green;
+        margin: 5px;
+    }
+
+    #arrow_controls {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #side_arrows {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #input_and_button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container" id="container_body">
+    <div class="container" id="left_side">
+        <div class="container" id="pictures">
+            <img class="picture" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                alt="">
+            <img class="picture"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png" alt="">
+        </div>
+        <div class="container" id="pagination_display">
+            <a href="">1 of 1</a>
+        </div>
+    </div>
+    <div class="container" id="right_side">
+        <div class="form-group">
+            <div class="container" id="container_btns">
+                <a href="#" class="btn" id="btn_name">Search By Name</a>
+                <a href="#" class="btn" id="btn_type">Search By Type</a>
+            </div>
+            <div class="container" id="input_and_button">
+                <input type="text" class="form-control" id="search_bar" placeholder="Search Parameter Here">
+                <a href="#" class="btn" id="btn_search">Enter</a>
+            </div>
+        </div>
+        <div class="container" id="arrow_controls">
+            <a href="#" class="btn arrow_button"><i class="fas fa-caret-up"></i></a>
+            <div class="container" id="side_arrows">
+                <a href="#" class="btn arrow_button"><i class="fas fa-caret-left"></i></a>
+                <a href="#" class="btn arrow_button"><i class="fas fa-caret-right"></i></a>
+            </div>
+            <a href="#" class="btn arrow_button"><i class="fas fa-caret-down"></i></a>
+        </div>
+    </div>
+</div>
+{% endblock %}
