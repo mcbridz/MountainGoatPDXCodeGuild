@@ -11,8 +11,8 @@ class PokemonType(models.Model):
 class Pokemon(models.Model):
     number = models.IntegerField()
     name = models.CharField(max_length=40)
-    height = models.IntegerField()
-    weight = models.IntegerField()
+    height = models.FloatField()
+    weight = models.FloatField()
     image_front = models.CharField(max_length=500)
     image_back = models.CharField(max_length=500)
     types = models.ManyToManyField(

@@ -34,8 +34,8 @@ class Command(BaseCommand):
                     pokemon['image_front'] = 'http://placekitten.com/96/96'
                 if pokemon['image_back'] is None:
                     pokemon['image_back'] = 'http://placekitten.com/96/96'
-                tmp_pokemon = Pokemon(name=pokemon['name'], number=pokemon['number'], height=pokemon['height'],
-                                      weight=pokemon['weight'], image_front=pokemon['image_front'], image_back=pokemon['image_back'])
+                tmp_pokemon = Pokemon(name=pokemon['name'], number=pokemon['number'], height=pokemon['height']/10,
+                                      weight=pokemon['weight']/10, image_front=pokemon['image_front'], image_back=pokemon['image_back'])
                 tmp_pokemon.save()
                 for poketype in pokemon['types']:
                     tmp_poketype = get_object_or_404(
