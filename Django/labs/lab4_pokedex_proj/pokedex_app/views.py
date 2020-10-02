@@ -1,30 +1,32 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.paginator import Paginator
-from .models import Pokemon
+from .models import Pokemon, PokemonType
+import random
 
 
 def home(request):
+    print(request)
+    poketypes = PokemonType.objects.all().order_by('name')
     pokemons = Pokemon.objects.all().order_by('number')
     search_string = ''
     search_type = ''
-    if request.GET.get('search_type', False):
-        search_type = request.GET['search_type']
-        if request.GET['search_type'] == 'name_and_type':
-            search_string = request.GET['search_string']
-            pokemons = pokemons.filter(
-                name__icontains=search_string, types__icontains=search_string)
-        elif request.GET['search_type'] == 'name':
-            search_string = request.GET['search_string']
-            pokemons = pokemons.filter(name__icontains=search_string)
-        elif request.GET['search_type'] == 'type':
-            search_string = request.GET['search_string']
-            pokemons = pokemons.filter(types__icontains=search_string)
-    pokemon_per_page = 1
-    print(request.GET)
     page_number = request.GET.get('page', 1)
     print(f'Loading page: {page_number}')
+    pokemon_per_page = 1
     paginator = Paginator(pokemons, pokemon_per_page)
+    if request.GET.get('search_type', False):
+        search_type = request.GET['search_type']
+        if search_type == 'name':
+            search_string = request.GET['search_string']
+            pokemons = pokemons.filter(name__icontains=search_string)
+            paginator = Paginator(pokemons, pokemon_per_page)
+        elif search_type == 'type':
+            search_string = request.GET['search_string']
+            pokemons = pokemons.filter(types__name__icontains=search_string)
+            paginator = Paginator(pokemons, pokemon_per_page)
+        elif search_type == 'random':
+            page_number = random.randint(1, paginator.num_pages)
     pokepage = paginator.page(page_number)
     back_ten_number = int(page_number) - 10
     forward_ten_number = int(page_number) + 10
@@ -36,6 +38,7 @@ def home(request):
         forward_ten_possible = False
     context = {
         'pokemons': pokepage,
+        'poketypes': poketypes,
         'paginator': paginator,
         'page_number': page_number,
         'back_ten_possible': back_ten_possible,

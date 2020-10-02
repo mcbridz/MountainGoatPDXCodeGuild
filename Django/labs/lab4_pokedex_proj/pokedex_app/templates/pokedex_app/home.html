@@ -40,7 +40,7 @@
         background-color: green;
     }
 
-    #btn_name_and_type {
+    #btn_reset {
         color: white;
         background-color: green;
     }
@@ -59,7 +59,7 @@
     }
 
     #arrow_controls {
-        height: 70%;
+        height: 60%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -91,6 +91,25 @@
     .picture {
         min-height: 40%;
     }
+
+    #div_dropdown {
+        width: 100%;
+    }
+
+    #btn_dropdown {
+        background-color: white;
+        color: black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #div_features {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 </style>
 {% endblock %}
 {% block body %}
@@ -106,7 +125,7 @@
                 <table class="table">
                     <tr>
                         <th>Name</th>
-                        <td>{{ pokemon.name }}</td>
+                        <td>{{ pokemon.name|title }}</td>
                     </tr>
                     <tr>
                         <th>Number</th>
@@ -114,16 +133,19 @@
                     </tr>
                     <tr>
                         <th>Height</th>
-                        <td>{{ pokemon.height }}</td>
+                        <td>{{ pokemon.height }}"</td>
                     </tr>
                     <tr>
                         <th>Weight</th>
-                        <td>{{ pokemon.weight }}</td>
+                        <td>{{ pokemon.weight }} lb</td>
                     </tr>
                     <tr>
                         <th>Type</th>
                         <td>
-                            {{ pokemon.types }}
+                            <!-- pokemon.types.all is the right-side of for loop to print -->
+                            {% for type in pokemon.types.all %}
+                            <div>{{ type.name|title }}</div>
+                            {% endfor %}
                         </td>
                     </tr>
                 </table>
@@ -140,15 +162,32 @@
     <div class="container" id="right_side">
         <form method="GET" class="form-group">
             <div class="container" id="container_btns">
-                <a class="btn" id="btn_name">Search By Name</a>
-                <a class="btn" id="btn_name_and_type">Reset</a>
+                <a class="btn disabled" id="btn_name">Search By Name</a>
+                <a class="btn" href="{% url 'pokedex_app:home' %}" id="btn_reset">Reset</a>
                 <a class="btn" id="btn_type">Search By Type</a>
             </div>
             <div class="container" id="input_and_button">
-                <input type="text" class="form-control" id="search_bar" placeholder="Search By Name And Type"
+
+                <input type="text" class="form-control" id="search_bar" placeholder="Search By Name"
                     name="search_string">
+
+
+                <div class="btn-group" id="div_dropdown" hidden>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" id="btn_dropdown">
+                        Search By Type
+                    </button>
+                    <div class="dropdown-menu">
+                        {% for type in poketypes %}
+                        <a class="dropdown-item"
+                            href="?search_type=type&search_string={{type.name}}">{{ type.name|title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
                 <input type="hidden" id="search_type" name="search_type"
-                    value='{% if search_type %}{{ search_type}} {% else %}"name_and_type" {% endif %}'>
+                    value='{% if search_type == "random" %}name{% elif search_type %}{{search_type}}{% else %}name{% endif %}'>
             </div>
         </form>
 
@@ -193,6 +232,11 @@
             <a href="#!" class="btn arrow_button"><i class="fas fa-caret-down"></i></a>
             {% endif %}
         </div>
+
+        <!-- fun features -->
+        <div class="container" id="div_features">
+            <a href="?search_type=random" class="btn arrow_button" id="button_random">Surprise Me</a>
+        </div>
     </div>
     {% endblock %}
 
@@ -200,6 +244,8 @@
     <script>
         $('#btn_name').click(function () {
             console.log('setting search parameter to "name"')
+            $('#search_bar').attr('hidden', false)
+            $('#div_dropdown').attr('hidden', true)
             $('#search_type').val('name')
             $('#btn_name').addClass('disabled')
             $('#btn_type').removeClass('disabled')
@@ -207,17 +253,12 @@
         })
         $('#btn_type').click(function () {
             console.log('setting search parameter to "type"')
+            $('#div_dropdown').attr('hidden', false)
+            $('#search_bar').attr('hidden', true)
             $('#search_type').val('type')
             $('#btn_type').addClass('disabled')
             $('#btn_name').removeClass('disabled')
             $('#search_bar').attr('placeholder', 'Search By Type')
-        })
-        $('#btn_name_and_type').click(function () {
-            console.log('setting search parameter to "name and type"')
-            $('#search_type').val('name_and_type')
-            $('#btn_name').removeClass('disabled')
-            $('#btn_type').removeClass('disabled')
-            $('#search_bar').attr('placeholder', 'Search By Name And Type')
         })
         $('#turn_pokemon').click(function () {
             console.log('turning pokemon')

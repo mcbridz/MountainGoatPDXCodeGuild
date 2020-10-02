@@ -30,6 +30,10 @@ class Command(BaseCommand):
                 tmp_poketype.save()
             # handle pokemon
             for pokemon in pokedict:
+                if pokemon['image_front'] is None:
+                    pokemon['image_front'] = 'http://placekitten.com/96/96'
+                if pokemon['image_back'] is None:
+                    pokemon['image_back'] = 'http://placekitten.com/96/96'
                 tmp_pokemon = Pokemon(name=pokemon['name'], number=pokemon['number'], height=pokemon['height'],
                                       weight=pokemon['weight'], image_front=pokemon['image_front'], image_back=pokemon['image_back'])
                 tmp_pokemon.save()
