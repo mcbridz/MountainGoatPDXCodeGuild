@@ -20,6 +20,7 @@
         display: flex;
         flex-direction: column;
         height: fit-content;
+        min-height: 456px;
     }
 
     #right_side {}
@@ -110,9 +111,14 @@
         flex-direction: row;
         justify-content: center;
     }
+
+    #message {
+        text-align: center;
+    }
 </style>
 {% endblock %}
 {% block body %}
+
 <div class="container" id="container_body">
     {% for pokemon in pokemons %}
     <div class="container" id="left_side">
@@ -238,42 +244,44 @@
             <a href="?search_type=random" class="btn arrow_button" id="button_random">Surprise Me</a>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% if message != '' %}<div id="message">{{message}}</div> {% endif %}
+{% endblock %}
 
-    {%block javascript%}
-    <script>
-        $('#btn_name').click(function () {
-            console.log('setting search parameter to "name"')
-            $('#search_bar').attr('hidden', false)
-            $('#div_dropdown').attr('hidden', true)
-            $('#search_type').val('name')
-            $('#btn_name').addClass('disabled')
-            $('#btn_type').removeClass('disabled')
-            $('#search_bar').attr('placeholder', 'Search By Name')
-        })
-        $('#btn_type').click(function () {
-            console.log('setting search parameter to "type"')
-            $('#div_dropdown').attr('hidden', false)
-            $('#search_bar').attr('hidden', true)
-            $('#search_type').val('type')
-            $('#btn_type').addClass('disabled')
-            $('#btn_name').removeClass('disabled')
-            $('#search_bar').attr('placeholder', 'Search By Type')
-        })
-        $('#turn_pokemon').click(function () {
-            console.log('turning pokemon')
-            if ($('#front_picture').hasClass('hidden')) {
-                $('#front_picture').removeClass('hidden')
-                $('#front_picture').attr('hidden', false)
-                $('#back_picture').addClass('hidden')
-                $('#back_picture').attr('hidden', true)
-            } else {
-                $('#back_picture').removeClass('hidden')
-                $('#back_picture').attr('hidden', false)
-                $('#front_picture').addClass('hidden')
-                $('#front_picture').attr('hidden', true)
-            }
+{%block javascript%}
+<script>
+    $('#btn_name').click(function () {
+        console.log('setting search parameter to "name"')
+        $('#search_bar').attr('hidden', false)
+        $('#div_dropdown').attr('hidden', true)
+        $('#search_type').val('name')
+        $('#btn_name').addClass('disabled')
+        $('#btn_type').removeClass('disabled')
+        $('#search_bar').attr('placeholder', 'Search By Name')
+    })
+    $('#btn_type').click(function () {
+        console.log('setting search parameter to "type"')
+        $('#div_dropdown').attr('hidden', false)
+        $('#search_bar').attr('hidden', true)
+        $('#search_type').val('type')
+        $('#btn_type').addClass('disabled')
+        $('#btn_name').removeClass('disabled')
+        $('#search_bar').attr('placeholder', 'Search By Type')
+    })
+    $('#turn_pokemon').click(function () {
+        console.log('turning pokemon')
+        if ($('#front_picture').hasClass('hidden')) {
+            $('#front_picture').removeClass('hidden')
+            $('#front_picture').attr('hidden', false)
+            $('#back_picture').addClass('hidden')
+            $('#back_picture').attr('hidden', true)
+        } else {
+            $('#back_picture').removeClass('hidden')
+            $('#back_picture').attr('hidden', false)
+            $('#front_picture').addClass('hidden')
+            $('#front_picture').attr('hidden', true)
+        }
 
-        })
-    </script>
-    {%endblock%}
+    })
+</script>
+{%endblock%}
