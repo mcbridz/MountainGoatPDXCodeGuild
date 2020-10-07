@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=4000)
-    image = models.ImageField(upload_to='profile/images/', null=True)
+    body = models.CharField(max_length=10000)
+    image = models.ImageField(
+        upload_to='profile/images/', null=True, default='profile/images/200.jpg')
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts')
     public = models.BooleanField(default=False)
@@ -13,7 +14,7 @@ class BlogPost(models.Model):
     date_edited = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return self.title + str(date_created)
+        return self.title + ': ' + str(self.date_created)
 
 
 class UserProfile(models.Model):
@@ -22,4 +23,4 @@ class UserProfile(models.Model):
         User, on_delete=models.CASCADE, related_name='profile')
 
     def __str__(self):
-        return self.last_name + ', ' + self.first_name
+        return self.login_name.last_name + ', ' + self.login_name.first_name

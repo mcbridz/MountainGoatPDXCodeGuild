@@ -1,10 +1,43 @@
 {% extends 'blog_app/base.html' %}
 {% block title %}Profile{% endblock %}
 {% block style %}
-
+<style>
+    img {
+        max-height: 200px;
+    }
+</style>
 {% endblock %}
 {% block body %}
-
+<h5>{{user.username}}'s Profile</h5>
+<h6>Profile Picture: </h6>
+<img
+    src="{% if user.profile.profile_picture.url != None %} {{user.profile.profile_picture.url}} {% else %} https://placekitten.com/200/200/ {% endif %}">
+<form action="{% url 'blog_app:profile' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="first_name" value="{{user.first_name}}" required>
+    <input type="text" name="last_name" value="{{user.last_name}}" required>
+    <label for="profile_picture">Upload New Profile Picture Here</label>
+    <input type="file" name="profile_picture" accept="image/*">
+    <h1>Don't forget SAVE/Update Password!</h1>
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+<hr>
+{% for post in posts %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>{{post}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>{{post.body|truncatechars:150}}</th>
+            <th><a href="{% url 'blog_app:post_detail' post.id %}">edit</a></th>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
 {% endblock %}
 {% block javascript %}
 

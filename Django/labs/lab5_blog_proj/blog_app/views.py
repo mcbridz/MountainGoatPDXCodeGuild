@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, BlogPost
 import requests
+import random
 
 
 # from django.contrib.auth import login as login_user
@@ -20,16 +21,94 @@ def index(request):
     return HttpResponseRedirect(reverse('blog_app:welcome'))
 
 
+def home(request):
+    feed = BlogPost.objects.all().order_by('-date_created')
+    authenticated = False
+    if request.user.is_authenticated:
+        authenticated = True
+    return render(request, 'blog_app/home.html', {'feed': feed, 'authenticated': authenticated})
+
+
+@login_required
+def logout(request):
+    django.contrib.auth.logout(request)
+    return HttpResponseRedirect(reverse('blog_app:login'))
+
+
+@login_required
+def post_detail(request, post_id):
+    post = get_object_or_404(BlogPost, pk=post_id)
+    if post.user != request.user:
+        return HttpResponseRedirect(reverse('blog_app:home'))
+    context = {
+        'title': post.title,
+        'body': post.body,
+        'image': post.image.url,
+        'date': post.date_created,
+        'post': post
+    }
+    return render(request, 'blog_app/post_detail.html', context)
+
+
+def post_view(request, post_id):
+    post = get_object_or_404(BlogPost, pk=post_id)
+    context = {
+        'title': post.title,
+        'body': post.body,
+        'image': post.image.url,
+        'date': post.date_created,
+        'post': post,
+        'authenticated': False,
+    }
+    if request.user.is_authenticated:
+        context['authenticated'] = True
+    return render(request, 'blog_app/post_view.html', context)
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(BlogPost, pk=post_id)
+    post.delete()
+    return HttpResponseRedirect(reverse('blog_app:profile'))
+
+
+@login_required
+def save_post(request):
+    blog_data = request.POST
+    # print(blog_data)
+    title = blog_data['title']
+    body = blog_data['body']
+    blog_post = BlogPost(title=title, body=body, user=request.user)
+    if request.FILES.get('image', False):
+        image = request.FILES['image']
+        blog_post.image = image
+    blog_post.save()
+    print(blog_post.id)
+    return HttpResponseRedirect(reverse('blog_app:post_detail', args=[blog_post.id]))
+
+
 @login_required
 def profile(request):
-    user = request.user
-    print(user)
+    posts = BlogPost.objects.filter(
+        user=request.user).order_by('-date_created')
+    print(posts)
     context = {
-        'first_name': user.first_name,
-        'last_name': user.last_name,
-        'email': user.email,
-        'picture': user.profile_picture
+        'user': request.user,
+        'posts': posts,
     }
+    if request.method == 'POST':
+        print(request.POST)
+        user = request.user
+        image = request.FILES['profile_picture']
+        data = request.POST
+        first_name = data['first_name']
+        last_name = data['last_name']
+        user.first_name = first_name
+        user.last_name = last_name
+        user.profile.profile_picture = image
+        user.profile.save()
+        user.save()
+    return render(request, 'blog_app/profile.html', context)
 
 
 def register(request):
@@ -61,7 +140,7 @@ def register(request):
         django.contrib.auth.login(request, user)
         new_profile = UserProfile(login_name=user)
         new_profile.save()
-        HttpResponseRedirect(reverse('blog_app:profile'))
+        return HttpResponseRedirect(reverse('blog_app:profile'))
     context = {
         'site_key': settings.RECAPTCHA_SITE_KEY
     }
@@ -81,7 +160,20 @@ def login(request):
             'https://www.google.com/recaptcha/api/siteverify', data=data)
         result_json = resp.json()
         print(result_json)
+        ################################################
+        # need captcha logic
+        ################################################
         # user login logic here
+        username = request.POST['username']
+        password = request.POST['password']
+        user = django.contrib.auth.authenticate(
+            request, username=username, password=password)
+        if user is None:
+            message = 'not_found'
+        else:
+            django.contrib.auth.login(request, user)
+            next = request.GET.get('next', reverse('blog_app:profile'))
+            return HttpResponseRedirect(next)
     context = {
         'site_key': settings.RECAPTCHA_SITE_KEY
     }

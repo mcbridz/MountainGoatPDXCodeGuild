@@ -1,0 +1,24 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}Post Detail{% endblock %}
+{% block style %}
+{% endblock %}
+{% block body %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>{{user.username}}</th>
+            <th>{{title}}</th>
+            <th>{{date}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img src="{{post.user.profile.profile_picture.url}}"></td>
+            <td>{{body}}</td>
+            <td><img src="{{image}}"></td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+{% block javascript %}
+{% endblock %}
