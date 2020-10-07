@@ -28,7 +28,6 @@ def home(request):
             if not pokemons:
                 message = "No pokemon matching " + request.GET['search_string']
                 pokemons = Pokemon.objects.all().order_by('number')
-                # return HttpResponseRedirect(reverse('pokedex_app:home'))
             else:
                 pokemons = Pokemon.objects.all().filter(name__icontains=search_string)
             paginator = Paginator(pokemons, pokemon_per_page)

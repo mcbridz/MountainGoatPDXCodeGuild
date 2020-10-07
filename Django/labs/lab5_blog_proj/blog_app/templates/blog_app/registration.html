@@ -1,0 +1,52 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}Registration{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block body %}
+<div class="container" id="div_body">
+    <h3>User Registration</h3>
+    <form id="form_input" action="{% url 'blog_app:register' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="username" name="username" required>
+        <input type="text" placeholder="first name" name="first_name" required>
+        <input type="text" placeholder="last name" name=last_name required>
+        <input type="email" placeholder="email address" name="email" required>
+        <input type="password" placeholder="password" oninput="password_check()" name="password" id="password" required>
+        <input type="password" placeholder="password" oninput="password_check()" name="password_v" id="password_v"
+            required>
+        <input type="hidden" id="recaptcha" name="g-recaptcha-response">
+        <button class="btn btn-primary" type="submit" id="submit_btn">Submit</button>
+    </form>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="https://www.google.com/recaptcha/api.js?render={{site_key}}"></script>
+<script>
+    function password_check() {
+        if ($('#password').val() != $('#password_v').val()) {
+            $('#submit_btn').addClass('disabled')
+            console.log('Passwords don\'t match.')
+        }
+        else {
+            $('#submit_btn').removeClass('disabled')
+            console.log('Passwords match.')
+        }
+    }
+    grecaptcha.ready(function () {
+        // 4
+        $('#form_input').submit(function (e) {
+            let form = this;
+            // 5
+            e.preventDefault()
+            grecaptcha.execute('{{ site_key }}', { action: 'form' }).then(function (token) {
+                console.log(token)
+                // 6
+                $('#recaptcha').val(token)
+                // 7
+                form.submit()
+            });
+        })
+    });
+</script>
+{% endblock %}
