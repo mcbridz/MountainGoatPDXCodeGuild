@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
-from .models import UserProfile, BlogPost
+from .models import UserProfile, BlogPost, Comment
 import requests
 import random
 
@@ -18,7 +18,7 @@ def welcome(request):
 
 
 def index(request):
-    return HttpResponseRedirect(reverse('blog_app:welcome'))
+    return HttpResponseRedirect(reverse('blog_app:login'))
 
 
 def home(request):
@@ -172,7 +172,7 @@ def login(request):
             message = 'not_found'
         else:
             django.contrib.auth.login(request, user)
-            next = request.GET.get('next', reverse('blog_app:profile'))
+            next = request.GET.get('next', reverse('blog_app:home'))
             return HttpResponseRedirect(next)
     context = {
         'site_key': settings.RECAPTCHA_SITE_KEY

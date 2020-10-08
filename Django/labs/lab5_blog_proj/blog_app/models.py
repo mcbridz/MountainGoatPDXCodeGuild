@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=100)
-    body = models.CharField(max_length=10000)
+    body = models.TextField()
     image = models.ImageField(
         upload_to='profile/images/', null=True, default='profile/images/200.jpg')
     user = models.ForeignKey(
@@ -24,3 +24,12 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.login_name.last_name + ', ' + self.login_name.first_name
+
+
+class Comment(models.Model):
+    content = models.TextField()
+    parent_comment = models.ForeignKey(
+        'Comment', on_delete=models.PROTECT, related_name='children')
+    blog_post = models.ForeignKey(
+        BlogPost, on_delete=models.PROTECT, related_name='post')
+    deleted_comment = models.BooleanField(default=False)

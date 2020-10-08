@@ -129,3 +129,5 @@ RECAPTCHA_SITE_KEY = '6LdLbdQZAAAAAFPUDUmXHIDFo7tjwHyUDb40W-lG'
 RECAPTCHA_SECRET_KEY = secrets.captcha_key
 PROFILE_PIC_URL = '/profile/'
 PROFILE_PIC_ROOT = os.path.join(BASE_DIR, 'profile')
+
+LOGIN_URL = '/login/'

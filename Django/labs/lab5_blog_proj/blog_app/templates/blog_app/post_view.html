@@ -1,6 +1,15 @@
 {% extends 'blog_app/base.html' %}
 {% block title %}Post Detail{% endblock %}
 {% block style %}
+<style>
+    .profile_picture {
+        max-height: 100px;
+    }
+
+    .post_picture {
+        max-height: 200px;
+    }
+</style>
 {% endblock %}
 {% block body %}
 <table class="table">
@@ -13,12 +22,26 @@
     </thead>
     <tbody>
         <tr>
-            <td><img src="{{post.user.profile.profile_picture.url}}"></td>
+            <td><img class="profile_picture" src="{{post.user.profile.profile_picture.url}}"></td>
             <td>{{body}}</td>
-            <td><img src="{{image}}"></td>
+            <td><img class="post_picture" src="{{image}}"></td>
         </tr>
     </tbody>
 </table>
+{% if authenticated %}
+<form action="{% url 'blog_app:save_post' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Comment</span>
+        </div>
+        <input type="text" class="form-control" name="comment" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Reply To Post</button>
+    <hr>
+</form>
+{% endif %}
+
 {% endblock %}
 {% block javascript %}
 {% endblock %}
