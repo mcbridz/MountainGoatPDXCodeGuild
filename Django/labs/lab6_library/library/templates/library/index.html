@@ -18,6 +18,10 @@
         integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
         crossorigin="anonymous"></script>
 
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
     <title>Library</title>
 
     <style>
@@ -36,6 +40,33 @@
 
         .body_container {
             display: flex;
+        }
+
+        #form_container {}
+
+        #group_search_text {
+            width: 80%;
+        }
+
+        #group_field_select {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #paginator_container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 7px;
+        }
+
+        #page_display {
+            display: flex;
+            justify-content: center;
+        }
+
+        .title_and_fav {
+            display: flex;
+            justify-content: space-between;
         }
 
         @media only screen and (max-width: 768px) {
@@ -58,6 +89,30 @@
 <body>
     <div class="container" id="app">
 
+
+
+        <div class="container" id="form_container">
+            <div class="form-group" id="group_field_select">
+                <div>
+                    <label for="field_select">Search Parameter</label>
+                    <select class="form-control" id="field_select" v-model="search_parameters">
+                        {% for option in search_parameters %}
+                        <option value="{{option}}">{{ option|capfirst }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group" id="group_search_text">
+                    <label for="search_text">Search Text</label>
+                    <input type="text" required class="form-control" id="search_text" v-model="search_text"
+                        v-on:keyup.enter="search">
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr>
+        <div class="container" id="page_display"><span>Page [[current_page]] / [[num_pages]]</span></div>
         <div class="accordion" id="book_accordian">
             <div class="card" v-for="book in library">
 
@@ -67,7 +122,13 @@
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                             v-bind:data-target="'#collapse_'+book.id" aria-expanded="true"
                             v-bind:aria-controls="'#collapse_'+book.id">
-                            <span>[[book.title]] ([[book.year]])</span>
+                            <div class="title_and_fav">
+                                <span>[[book.title]] ([[book.year]])</span>
+                                <span v-if="book.favorited"><i v-on:click.stop="change_favorite(book.id)"
+                                        class="fas fa-star"></i></span>
+                                <span v-else><i v-on:click.stop="change_favorite(book.id)"
+                                        class="far fa-star"></i></span>
+                            </div>
                         </button>
                     </h2>
                 </div>
@@ -91,6 +152,18 @@
 
             </div>
         </div>
+
+
+        <div class="container" id="paginator_container">
+            <button class="btn btn-primary" v-if="back_possible" v-on:click="page_back()"><i
+                    class="fas fa-arrow-left"></i></button>
+            <button class="btn btn-primary" v-else disabled><i class="fas fa-arrow-left"></i></button>
+            <button class="btn btn-primary" v-on:click="reset()"><i class="fas fa-redo"></i></button>
+            <button class="btn btn-primary" v-if="forward_possible" v-on:click="page_forward()"><i
+                    class="fas fa-arrow-right"></i></button>
+            <button class="btn btn-primary" v-else disabled><i class="fas fa-arrow-right"></i></button>
+
+        </div>
     </div>
 
     <script>
@@ -98,23 +171,90 @@
             el: '#app',
             delimiters: ['[[', ']]'],
             data: {
-                message: 'Hello, world!',
+                search_text: '',
+                search_parameters: 'title',
                 library: [],
+                current_page: 1,
+                back_possible: true,
+                forward_possible: true,
+                saved_search_text: '',
+                saved_search_parameters: '',
+                num_pages: 1,
             },
             methods: {
-                getLibrary: function () {
+                // getLibrary: function () {
+                //     axios({
+                //         url: '{% url "library:library" %}',
+                //         method: 'GET',
+                //     }).then(response => {
+                //         console.log(response.data)
+                //         this.library = response.data.library
+                //         console.log(this.library)
+                //     })
+                // },
+                search: function () {
+                    console.log('search_initiated')
+                    console.log(this.search_text)
+                    console.log(this.search_parameters)
+                    this.saved_search_parameters = this.search_parameters
+                    this.saved_search_text = this.search_text
                     axios({
-                        url: '{% url "library:library" %}',
+                        url: '{% url "library:search" %}',
                         method: 'GET',
+                        params: {
+                            'parameter': this.search_parameters,
+                            'text': this.search_text,
+                            'page': this.current_page,
+                        },
                     }).then(response => {
                         console.log(response.data)
-                        this.library = response.data.library
+                        this.library = response.data.books
+                        console.log('this.library')
                         console.log(this.library)
+                        paginator_controls = response.data.paginator_controls
+                        this.back_possible = paginator_controls['back_possible']
+                        this.forward_possible = paginator_controls['forward_possible']
+                        this.num_pages = paginator_controls['num_pages']
+                    })
+                },
+                page_back: function () {
+                    this.current_page -= 1
+                    this.search_text = this.saved_search_text
+                    this.search_parameters = this.saved_search_parameters
+                    console.log(this.page)
+                    this.search()
+                },
+                page_forward: function () {
+                    this.current_page += 1
+                    this.search_text = this.saved_search_text
+                    this.search_parameters = this.saved_search_parameters
+                    console.log(this.page)
+                    this.search()
+                },
+                reset: function () {
+                    this.current_page = 1
+                    this.search_parameters = 'title'
+                    this.search_text = ''
+                    this.saved_search_parameters = 'title'
+                    this.saved_search_text = ''
+                    this.search()
+                },
+                change_favorite: function (id) {
+                    console.log('changing favorite for ' + id)
+                    axios({
+                        url: '{% url "library:change_favorite" %}',
+                        method: 'GET',
+                        params: {
+                            'book_id': id
+                        }
+                    }).then(response => {
+                        console.log('returning from view')
+                        this.search()
                     })
                 }
             },
             created: function () {
-                this.getLibrary()
+                this.search()
             }
         })
     </script>

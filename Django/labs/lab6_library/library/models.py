@@ -10,6 +10,7 @@ class Book(models.Model):
     url = models.CharField(max_length=500)
     country = models.CharField(max_length=200)
     language = models.CharField(max_length=200)
+    favorited = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title + ', ' + self.author + ' ' + '(' + str(self.year) + ')'
