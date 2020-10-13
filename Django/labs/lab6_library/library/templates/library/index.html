@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"
+        integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg=="
+        crossorigin="anonymous"></script>
+
+    <title>Library</title>
+
+    <style>
+        .detail_image {
+            max-height: 300px;
+        }
+
+        .detail_label {
+            font-weight: bold;
+        }
+
+        .detail_container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .body_container {
+            display: flex;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .body_container {
+                flex-direction: column;
+            }
+
+            .detail_image {
+                max-width: 150px;
+                max-height: 100%;
+            }
+
+            .card-body {
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+
+        <div class="accordion" id="book_accordian">
+            <div class="card" v-for="book in library">
+
+
+                <div class="card-header" v-bind:id="'heading_'+book.id">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                            v-bind:data-target="'#collapse_'+book.id" aria-expanded="true"
+                            v-bind:aria-controls="'#collapse_'+book.id">
+                            <span>[[book.title]] ([[book.year]])</span>
+                        </button>
+                    </h2>
+                </div>
+
+                <div v-bind:id="'collapse_'+book.id" class="collapse" v-bind:aria-labelledby="'heading_'+book.id"
+                    data-parent="#book_accordian">
+                    <div class="card-body">
+                        <div class="container body_container">
+                            <div class="container detail_container">
+                                <span class="detail_label">Author: </span> <span>[[book.author]]</span>
+                                <span class="detail_label">Pages: </span> <span>[[book.pages]]</span>
+                                <span class="detail_label">Country: </span> <span>[[book.country]]</span>
+                                <span class="detail_label">Language: </span> <span>book.language</span>
+                                <span class="detail_label">Details: </span> <a v-bind:href="book.url">[[book.url]]</a>
+                            </div>
+                            <img v-bind:src="book.image" class="detail_image">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            delimiters: ['[[', ']]'],
+            data: {
+                message: 'Hello, world!',
+                library: [],
+            },
+            methods: {
+                getLibrary: function () {
+                    axios({
+                        url: '{% url "library:library" %}',
+                        method: 'GET',
+                    }).then(response => {
+                        console.log(response.data)
+                        this.library = response.data.library
+                        console.log(this.library)
+                    })
+                }
+            },
+            created: function () {
+                this.getLibrary()
+            }
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
