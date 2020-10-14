@@ -1,0 +1,17 @@
+<tbody>
+    <tr>
+        <th class="comment_top_row">
+            <span>{{sub_comment.blog_post.user.username}}</span>
+            <a href="{% url 'blog_app:comment_detail' comment.id %}">...</a>
+        </th>
+    </tr>
+    <tr>
+        <td>{{sub_comment.content}}</td>
+    </tr>
+</tbody>
+{% if 'Comment.objects.filter(parent_comment=sub_comment).exists()' %}
+{% for sub_comment in 'Comment.objects.filter(parent_comment=sub_comment)' %}
+
+
+{% endfor %}
+{% endif %}

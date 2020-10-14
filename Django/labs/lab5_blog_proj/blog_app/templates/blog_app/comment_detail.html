@@ -1,0 +1,56 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}Comment Details{% endblock %}
+{% block style %}
+
+<style>
+    .profile_picture {
+        max-height: 100px;
+    }
+
+    .post_picture {
+        max-height: 200px;
+    }
+
+    .comment_pic {
+        max-height: 50px;
+    }
+</style>
+
+{% endblock %}
+{% block body %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{{ comment.blog_post.user.username }}</th>
+            <th>{{ comment.blog_post.title }}</th>
+            <th>{{ comment.blog_post.date_created }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img class="profile_picture" src="{{comment.blog_post.user.profile.profile_picture.url}}"></td>
+            <td>{{comment.blog_post.body}}</td>
+            <td><img class="post_picture" src="{{comment.blog_post.image.url}}"></td>
+        </tr>
+    </tbody>
+</table>
+<table class="table">
+    <tbody>
+        <tr>
+            <th class="comment_top_row">
+                <img class="comment_pic" src="{{comment.user.profile.profile_picture.url}}">
+                <span>{{comment.user.username}}</span>
+            </th>
+        </tr>
+        <tr>
+            <td>{{comment.content}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

@@ -9,18 +9,13 @@
     .post_picture {
         max-height: 200px;
     }
-
-    .comment_top_row {
-        display: flex;
-        justify-content: space-between;
-    }
 </style>
 {% endblock %}
 {% block body %}
 <table class="table">
     <thead>
         <tr>
-            <th>{{post.user.username}}</th>
+            <th>{{user.username}}</th>
             <th>{{title}}</th>
             <th>{{date}}</th>
         </tr>
@@ -34,7 +29,7 @@
     </tbody>
 </table>
 {% if authenticated %}
-<form action="{% url 'blog_app:comment_post' post.id %}" method="POST">
+<form action="{% url 'blog_app:save_post' %}" method="POST">
     {% csrf_token %}
     <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -45,30 +40,6 @@
     <button class="btn btn-primary" type="submit">Reply To Post</button>
     <hr>
 </form>
-{% endif %}
-
-{% if comments_exist %}
-<table class="table">
-    {% for comment in comments %}
-    <tbody>
-        <tr>
-            <th class="comment_top_row">
-                <span>{{comment.blog_post.user.username}}</span>
-                <a href="{% url 'blog_app:comment_detail' comment.id %}">...</a>
-            </th>
-        </tr>
-        <tr>
-            <td>{{comment.content}}</td>
-        </tr>
-    </tbody>
-    {% if 'Comment.objects.filter(parent_comment=comment).exists()' %}
-    {% for sub_comment in 'Comment.objects.filter(parent_comment=comment)' %}
-    {% include "blog_app/comment.html" %}
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
-</table>
-
 {% endif %}
 
 {% endblock %}

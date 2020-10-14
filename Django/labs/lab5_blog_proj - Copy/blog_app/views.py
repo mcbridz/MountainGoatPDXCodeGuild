@@ -49,26 +49,6 @@ def post_detail(request, post_id):
     }
     return render(request, 'blog_app/post_detail.html', context)
 
-# def build_tree_helper(tree, level):
-#     finished = False
-#     for comment in tree[level]:
-#         if not Comment.objects.filter(parent_comment=comment).exists():
-#             finished = True
-#     if finished is False:
-#         return
-#     ...
-
-# def build_tree(blog_post):
-#     first_comments = Comment.objects.filter(blog_post=blog_post)
-#     tree = {}
-#     level = 1
-#     tree[level] = []
-#     comment_list = {}
-#     for comment in first_comments:
-#         comment_list[comment.id] = comment
-#     tree[level].append(comment_list)
-#     build_tree_helper(tree, level)
-
 
 def post_view(request, post_id):
     post = get_object_or_404(BlogPost, pk=post_id)
@@ -79,12 +59,7 @@ def post_view(request, post_id):
         'date': post.date_created,
         'post': post,
         'authenticated': False,
-        'comments_exist': False,
     }
-    if post.comments.all().exists():
-        comments = post.comments.all()
-        context['comments_exist'] = True
-        context['comments'] = comments
     if request.user.is_authenticated:
         context['authenticated'] = True
     return render(request, 'blog_app/post_view.html', context)
@@ -110,31 +85,6 @@ def save_post(request):
     blog_post.save()
     print(blog_post.id)
     return HttpResponseRedirect(reverse('blog_app:post_detail', args=[blog_post.id]))
-
-
-@login_required
-def comment_post(request, post_id):
-    print(request.POST)
-    content = request.POST['comment']
-    blog_post = get_object_or_404(BlogPost, pk=post_id)
-    new_comment = Comment(content=content, blog_post=blog_post)
-    print(new_comment)
-    new_comment.save()
-    return HttpResponseRedirect(reverse('blog_app:post_view', args=[post_id]))
-
-
-def comment_detail(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    context = {
-        'comment': comment,
-        'authenticated': False,
-        'has_children': False,
-    }
-    if request.user.is_authenticated:
-        context['authenticated'] = True
-    if Comment.objects.filter(parent_comment=comment_id).exists():
-        context['has_children'] = True
-    return render(request, 'blog_app/comment_detail.html', context)
 
 
 @login_required

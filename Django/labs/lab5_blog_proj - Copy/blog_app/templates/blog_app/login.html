@@ -1,0 +1,45 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}Login{% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block body %}
+<div class="container" id="div_body">
+    <h3>User Login</h3>
+    <form id="form_input" action="{% url 'blog_app:login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="username" name="username" required>
+        <input type="password" placeholder="password" name="password" required>
+        <input type="hidden" id="recaptcha" name="g-recaptcha-response">
+        <!-- <button class="btn btn-primary g-recaptcha" data-sitekey="6LdLbdQZAAAAAFPUDUmXHIDFo7tjwHyUDb40W-lG"
+            data-callback="onSubmit" data-action="submit" type="submit">Login</button> -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    <a href="{% url 'blog_app:register' %}">
+        <h5>Not Registered? Click here to create an account!</h5>
+    </a>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="https://www.google.com/recaptcha/api.js?render={{site_key}}"></script>
+<script>
+    // function onSubmit(token) {
+    //     document.getElementById("form").submit();
+    // }
+    grecaptcha.ready(function () {
+        // 4
+        $('#form_input').submit(function (e) {
+            let form = this;
+            // 5
+            e.preventDefault()
+            grecaptcha.execute('{{ site_key }}', { action: 'form' }).then(function (token) {
+                console.log(token)
+                // 6
+                $('#recaptcha').val(token)
+                // 7
+                form.submit()
+            });
+        })
+    });
+</script>
+{% endblock %}

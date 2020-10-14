@@ -12,7 +12,6 @@ class BlogPost(models.Model):
     public = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(null=True, blank=True)
-    # BlogPost.comments accesses comments associated with instanced BlogPost
 
     def __str__(self):
         return self.title + ': ' + str(self.date_created)
@@ -30,14 +29,7 @@ class UserProfile(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     parent_comment = models.ForeignKey(
-        'Comment', on_delete=models.PROTECT, related_name='children', null=True)
+        'Comment', on_delete=models.PROTECT, related_name='children')
     blog_post = models.ForeignKey(
-        BlogPost, on_delete=models.PROTECT, related_name='comments')
+        BlogPost, on_delete=models.PROTECT, related_name='post')
     deleted_comment = models.BooleanField(default=False)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='comments')
-
-    def __str__(self):
-        output = 'Content: ' + str(self.content) + \
-            '\n' + 'Blog Post: ' + str(self.blog_post)
-        return output

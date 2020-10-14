@@ -1,0 +1,68 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}Home{% endblock %}
+{% block style %}
+<style>
+    img {
+        max-height: 50px;
+    }
+
+    .feed_pic {
+        width: 50px;
+    }
+
+    .top_row {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+{% endblock %}
+{% block body %}
+{% if authenticated %}
+<h5>{{user.username}}'s Home</h5>
+<h6>What's On Your Mind?</h6>
+<form action="{% url 'blog_app:save_post' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Title</span>
+        </div>
+        <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="body">Blog Body</label>
+        <textarea name="body" rows="10" class="form-control" required></textarea>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Upload File(not required)</span>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="image" name="image">
+            <label class="custom-file-label" for="image">Choose file</label>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Post To Blog</button>
+    <hr>
+</form>
+{% endif %}
+{% for post in feed %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th class="feed_pic"><img src="{{post.user.profile.profile_picture.url}}"></th>
+            <th class="top_row">
+                <span>{{post}}</span><span><a href="{% url 'blog_app:post_view' post.id %}">View Post</a></span>
+            </th>
+        </tr>
+        <tr>
+            <th>{{post.user.username}}</th>
+            <th>{{post.body|truncatechars:150}}</th>
+        </tr>
+    </tbody>
+</table>
+
+{% endfor %}
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
