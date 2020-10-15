@@ -5,6 +5,7 @@
 [Personal Library](Lab%20Solutions/personalLibrary.py)
 
 ##Capstone
+
 [GitHub Repo](https://github.com/mcbridz/mirmir)
 
 ## Python Labs
